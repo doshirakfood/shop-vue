@@ -1,0 +1,35 @@
+.logotype {
+	$bp: &;
+
+	color: var(--color-green-900);
+
+	font-weight: 500;
+	font-size: 32px;
+	line-height: 38px;
+	letter-spacing: -0.03em;
+	text-decoration: none;
+
+	fill: var(--color-brand);
+
+	&__wrapper {
+		display: inline-flex;
+		align-items: center;
+
+		transition: all $transition-primary;
+	}
+
+	&__icon {
+		width: 32px;
+		height: 32px;
+	}
+
+	&__name {
+		margin-left: 8px;
+	}
+
+	&:active {
+		#{$bp}__wrapper {
+			@include active;
+		}
+	}
+}

@@ -15,6 +15,10 @@ import VField from '@ui/field/field.vue'
 import VRow from '@components/grid-system/row.vue'
 import VCol from '@components/grid-system/col.vue'
 
+// elements
+import Logotype from '@components/logotype/logotype.vue'
+import Price from '@components/price/price.vue'
+
 const router = createRouter()
 const head = createHead()
 const store = Store
@@ -27,6 +31,10 @@ app.component('VButton', VButton)
 app.component('VField', VField)
 app.component('VRow', VRow)
 app.component('VCol', VCol)
+
+// elements
+app.component('Logotype', Logotype)
+app.component('Price', Price)
 
 app.use(router)
 app.use(head)

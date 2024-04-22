@@ -1,0 +1,19 @@
+.price {
+	$bp: &;
+
+	display: inline-flex;
+	align-items: center;
+
+	white-space: nowrap;
+
+	&__item {
+		font-weight: 500;
+		& + #{$bp}__item {
+			margin-left: 2px;
+		}
+
+		&--old {
+			color: var(--color-gray-4);
+		}
+	}
+}
