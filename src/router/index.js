@@ -20,6 +20,12 @@ export function createRouter() {
 				},
 			},
 
+			{
+				path: '/develop',
+				name: 'Develop',
+				component: () => import('@pages/develop.vue'),
+			},
+
 			// Redirect to 404
 			{
 				path: '/:pathMatch(.*)*',

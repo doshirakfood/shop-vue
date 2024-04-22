@@ -1,0 +1,16 @@
+.section {
+	margin-bottom: 50px;
+
+	&__title {
+		margin-bottom: 30px;
+		padding: 10px 20px;
+
+		color: #fff;
+
+		background-color: var(--color-brand);
+	}
+}
+
+.container {
+	max-width: 920px;
+}
