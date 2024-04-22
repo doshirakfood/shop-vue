@@ -1,0 +1,13 @@
+@each $name in $size-name-list {
+	.text-#{$name} {
+		font-size: var(--text-size-#{$name});
+
+		@if $name != 'tiny' {
+			line-height: 150%;
+		}
+
+		@if $name == 'tiny' {
+			line-height: 130%;
+		}
+	}
+}

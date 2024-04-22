@@ -1,0 +1,96 @@
+/* COLORS */
+
+// -- Main --
+$brand: #00b207;
+$brand-ghost: hsl(from $brand  h s l / 10%);
+$soft-primary: #84d187;
+$hard-primary: #2c742f;
+$warning: #ff8a00;
+$danger: #ea4b48;
+$white: #fff;
+$bg-primary: #fff;
+$disabled: #ddd;
+$outline-primary: #0070fb;
+$size-name-list: 'tiny', 'small', 'medium', 'large', 'xl', 'xxl';
+
+// -- Gray --
+$gray-list:
+	'05' #f2f2f2,
+	'1' #e6e6e6,
+	'2' #cccc,
+	'3' #b3b3b3,
+	'4' #999,
+	'5' #808080,
+	'6' #666,
+	'7' #4d4d4d,
+	'8' #333,
+	'9' #1a1a1a
+;
+
+// -- Green --
+$green-list:
+	'05' #edf2ee,
+	'1' #dae5da,
+	'2' #b4ccb4,
+	'3' #96b297,
+	'4' #7a997c,
+	'5' #618062,
+	'6' #406b42,
+	'7' #2b572e,
+	'8' #173b1a,
+	'9' #002603
+;
+
+
+
+/* TYPOGRAPHY */
+
+// title
+$heading-display: 72px;
+$heading-01: 56px;
+$heading-02: 48px;
+$heading-03: 40px;
+$heading-04: 36px;
+$heading-05: 32px;
+
+// text
+$text-tiny: 12px;
+$text-small: 14px;
+$text-medium: 16px;
+$text-large: 18px;
+$text-xl: 20px;
+$text-xxl: 24px;
+
+
+
+/* OTHERS */
+$transition-primary: 0.2s;
+$transition-animation-primary: 1s infinite linear;
+$radius-primary: 4px;
+$radius-secondary: 6px;
+$radius-tertiary: 100px;
+$font-family: 'Poppins', 'Helvetica';
+$name-weight-list: (
+	'light': '300',
+	'normal': '400',
+	'medium': '500',
+	'semibold': '600',
+	'bold': '700',
+	'extrabold': '800',
+	'black': '900'
+);
+$shadow-primary: 0 0 20px rgb(0 0 0 / 20%);
+$shadow-secondary: 0 0 10px rgb(0 0 0 / 50%);
+$shadow-product: 0 0 12px rgb(32 181 38 / 32%);
+
+
+
+/* MEDIA SCREEN */
+$lg-m: 1440px;
+$lg-s: 1280px;
+$lg-xs: 1024px;
+$medium-m: 980px;
+$medium-s: 768px;
+$small-m: 650px;
+$small-s: 480px;
+$small-xs: 380px;

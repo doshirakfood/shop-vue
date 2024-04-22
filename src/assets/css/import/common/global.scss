@@ -1,0 +1,36 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	margin: 0;
+
+	font-size: 16px;
+	font-family: $font-family;
+	line-height: 120%;
+
+	background-color: var(--bg-primary);
+}
+
+#app {
+	display: flex;
+	flex: 1 0 auto;
+	flex-direction: column;
+}
+
+.container {
+	width: 100%;
+	max-width: 1360px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0 20px;
+}
+
+abbr {
+	text-decoration: none;
+
+	cursor: help;
+}

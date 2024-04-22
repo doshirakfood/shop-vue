@@ -1,0 +1,37 @@
+:root {
+	/* COLORS */
+	--color-brand: #{$brand};
+	--color-brand-ghost: #{$brand-ghost};
+	--color-soft-primary: #{$soft-primary};
+	--color-hard-primary: #{$hard-primary};
+	--color-warning: #{$warning};
+	--color-danger: #{$danger};
+	--color-white: #{$white};
+	--color-disabled: #{$disabled};
+
+	@each $name, $variable in $gray-list {
+		--color-gray-#{$name}: #{$variable};
+	}
+
+	@each $name, $variable in $green-list {
+		--color-green-#{$name}: #{$variable};
+	}
+
+	--bg-primary: #{$bg-primary};
+	--outline-primary: #{$outline-primary};
+
+
+	/* TYPOGRAPHY */
+	--heading-size-display: #{$heading-display};
+	--heading-size-1: #{$heading-01};
+	--heading-size-2: #{$heading-02};
+	--heading-size-3: #{$heading-03};
+	--heading-size-4: #{$heading-04};
+	--heading-size-5: #{$heading-05};
+	--text-size-tiny: #{$text-tiny};
+	--text-size-small: #{$text-small};
+	--text-size-medium: #{$text-medium};
+	--text-size-large: #{$text-large};
+	--text-size-xl: #{$text-xl};
+	--text-size-xxl: #{$text-xxl};
+}

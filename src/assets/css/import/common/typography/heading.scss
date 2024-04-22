@@ -1,0 +1,17 @@
+h1, h2, h3, h4, h5, h6, .title {
+	margin: 0;
+
+	line-height: normal;
+}
+
+.title {
+	&-display {
+		font-size: var(--heading-size-display);
+	}
+
+	@for $i from 1 through 5 {
+		&-#{$i} {
+			font-size: var(--heading-size-#{$i});
+		}
+	}
+}

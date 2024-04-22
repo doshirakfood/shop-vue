@@ -1,0 +1,11 @@
+@each $name, $variable in $gray-list {
+	.bg-gray-#{$name} {
+		background-color: var(--color-gray-#{$name});
+	}
+}
+
+@each $name, $variable in $green-list{
+	.bg-green-#{$name} {
+		background-color: var(--color-green-#{$name});
+	}
+}
