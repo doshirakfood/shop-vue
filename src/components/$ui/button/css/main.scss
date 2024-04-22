@@ -1,0 +1,68 @@
+button,
+.btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 20px;
+	border: 2px solid transparent;
+	border-radius: $radius-tertiary;
+
+	font-weight: 600;
+	font-family: inherit;
+	line-height: 120%;
+
+	background-color: transparent;
+	cursor: pointer;
+
+	transition:
+		background-color $transition-primary,
+		color 0s,
+		fill 0s;
+
+	.icon {
+		&-left {
+			margin: 0 8px 0 0;
+		}
+
+		&-right {
+			order: 1;
+			margin: 0 0 0 8px;
+		}
+	}
+}
+
+.btn {
+	$bp: &;
+
+	@include outline-primary;
+
+	&-wrapper,
+	&-label {
+		display: flex;
+		align-items: center;
+	}
+
+	&-wrapper {
+		transition: all $transition-primary;
+	}
+
+	&-icon {
+		width: 16px;
+		min-width: 16px;
+		height: 16px;
+
+		pointer-events: none;
+	}
+
+	&:focus-visible {
+		@include focus;
+	}
+
+	&:active {
+		#{$bp} {
+			&-wrapper {
+				@include active;
+			}
+		}
+	}
+}

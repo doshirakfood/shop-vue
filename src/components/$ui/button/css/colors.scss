@@ -1,0 +1,67 @@
+// color
+.btn {
+	&-white {
+		color: var(--color-gray-9);
+
+		background: var(--color-white);
+
+		fill: var(--color-gray-9);
+	}
+
+	&-brand {
+		color: #fff;
+
+		background: var(--color-brand);
+
+		fill: #fff;
+
+		&:hover {
+			background: var(--color-hard-primary);
+		}
+	}
+
+	&-ghost {
+		color: var(--color-brand);
+
+		background: var(--color-brand-ghost);
+
+		fill: var(--color-brand);
+
+		&:hover {
+			color: var(--color-hard-primary);
+
+			background: hsl(from var(--color-hard-primary) h s l / 20%);
+
+			fill: var(--color-hard-primary);
+		}
+	}
+
+	&-danger {
+		color: #fff;
+
+		background: var(--color-danger);
+
+		fill: #fff;
+	}
+
+	@each $name in $gray-list {
+		$key: nth($name, 1);
+		$i: index($gray-list, $name);
+
+		&-gray-#{$key} {
+			background-color: var(--color-gray-#{$key});
+
+			@if $i < 6 {
+				color: var(--color-gray-9);
+
+				fill: var(--color-gray-9);
+			}
+
+			@if $i >= 6 {
+				color: var(--color-white);
+
+				fill: var(--color-white);
+			}
+		}
+	}
+}

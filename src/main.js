@@ -10,6 +10,10 @@ import './assets/css/style.scss'
 
 // components
 import SvgIcon from '@components/SvgIcon.vue'
+import VButton from '@ui/button/button.vue'
+import VField from '@ui/field/field.vue'
+import VRow from '@components/grid-system/row.vue'
+import VCol from '@components/grid-system/col.vue'
 
 const router = createRouter()
 const head = createHead()
@@ -19,6 +23,10 @@ const app = createApp(App)
 // components
 app.component('RouterLink', RouterLink)
 app.component('SvgIcon', SvgIcon)
+app.component('VButton', VButton)
+app.component('VField', VField)
+app.component('VRow', VRow)
+app.component('VCol', VCol)
 
 app.use(router)
 app.use(head)
