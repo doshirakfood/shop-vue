@@ -10,43 +10,22 @@
 	box-shadow: $shadow-secondary;
 }
 
-@mixin link-hover() {
+@mixin hover-hard() {
+	color: var(--color-hard-primary);
+
+	background: hsl(from var(--color-hard-primary) h s l / 20%);
+
+	fill: var(--color-hard-primary);
+}
+
+@mixin hover-link() {
 	color: var(--color-brand);
 
 	fill: var(--color-brand);
 }
 
-@mixin text-ellipsis() {
-	overflow: hidden;
-
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-
-@mixin text-size($size: 'medium', $weight: 400, $height: 150%) {
-	font-weight: $weight;
-	font-size: var(--text-size-#{$size});
-	line-height: $height;
-}
-
-@mixin reset-list() {
-	margin: 0;
-	padding: 0;
-
-	list-style-type: none;
-}
-
 @mixin outline-primary() {
 	outline: 2px solid transparent;
-}
-
-@mixin field-appearance() {
-	width: 100%;
-	padding: 14px 16px;
-	border: 1px solid var(--color-gray-1);
-	border-radius: $radius-secondary;
-
-	background-color: var(--bg-primary);
 }
 
 @mixin disabled() {
