@@ -1,0 +1,19 @@
+.select {
+	$bp: &;
+
+	&__main {
+		z-index: 9999;
+
+		width: 100%;
+	}
+
+	&__dropdown {
+		@include dropdown-view;
+
+		position: relative;
+	}
+
+	&__note {
+		padding: 14px;
+	}
+}

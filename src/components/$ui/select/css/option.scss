@@ -1,0 +1,39 @@
+.select {
+	$bp: &;
+
+	&__option {
+		cursor: pointer;
+
+		transition: all $transition-primary;
+
+		user-select: none;
+
+		#{$bp}--default & {
+			padding: 14px;
+		}
+
+		#{$bp}--small & {
+			padding: 5px;
+		}
+
+		&:not(#{$bp}__option--selected) {
+			&:hover {
+				@include hover-hard;
+			}
+		}
+
+		&--selected {
+			border-color: var(--color-brand);
+
+			color: #fff;
+
+			background-color: var(--color-brand);
+
+			fill: #fff;
+		}
+
+		& + #{$bp}__option {
+			border-top: 1px solid var(--color-gray-1);
+		}
+	}
+}

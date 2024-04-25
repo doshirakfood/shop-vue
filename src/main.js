@@ -12,6 +12,7 @@ import './assets/css/style.scss'
 import SvgIcon from '@components/SvgIcon.vue'
 import VButton from '@ui/button/button.vue'
 import VField from '@ui/field/field.vue'
+import VSelect from '@ui/select/select.vue'
 import VRow from '@components/grid-system/row.vue'
 import VCol from '@components/grid-system/col.vue'
 
@@ -29,6 +30,7 @@ app.component('RouterLink', RouterLink)
 app.component('SvgIcon', SvgIcon)
 app.component('VButton', VButton)
 app.component('VField', VField)
+app.component('VSelect', VSelect)
 app.component('VRow', VRow)
 app.component('VCol', VCol)
 
