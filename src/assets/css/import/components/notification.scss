@@ -1,0 +1,19 @@
+.notification {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--color-white);
+	border-radius: 100px;
+
+	color: var(--color-white);
+
+	font-size: 10px;
+	line-height: normal;
+
+	background-color: var(--color-hard-primary);
+
+	&-small {
+		width: 18px;
+		height: 18px;
+	}
+}

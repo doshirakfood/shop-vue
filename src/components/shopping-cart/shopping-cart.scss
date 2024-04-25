@@ -1,0 +1,43 @@
+.shop-cart {
+	$bp: &;
+
+	padding: 0;
+	border-radius: $radius-primary;
+
+	text-decoration: none;
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		& + #{$bp}__item {
+			margin-left: 10px;
+		}
+
+		&--cart {
+			position: relative;
+		}
+	}
+
+	&__count {
+		position: absolute;
+		top: -6px;
+		right: -6px;
+	}
+
+	&__icon {
+		width: 26px;
+		height: 26px;
+	}
+
+	&__label {
+		display: block;
+
+		color: var(--color-gray-7);
+		font-size: 11px
+	}
+
+	&__sum {
+		color: var(--color-gray-9);
+	}
+}

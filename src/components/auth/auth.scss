@@ -1,0 +1,10 @@
+.auth {
+	display: inline-flex;
+	align-items: center;
+
+	white-space: nowrap;
+
+	&__delim {
+		margin: 0 4px;
+	}
+}

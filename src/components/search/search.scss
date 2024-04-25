@@ -1,0 +1,15 @@
+.search {
+	display: flex;
+
+	&__item {
+		&--field {
+			border-right: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+
+		&--submit {
+			border-radius: 0 $radius-secondary $radius-secondary 0;
+		}
+	}
+}

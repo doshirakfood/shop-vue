@@ -1,10 +1,10 @@
 <template>
 	<input
 		v-bind="$attrs"
-		class="field"
 		:id="elId"
 		:type="type"
 		:value="modelValue"
+		:class="['field', `field--${type}`]"
 		@input="$emit('update:modelValue', $event.target.value)"
 	/>
 </template>
