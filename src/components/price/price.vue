@@ -1,7 +1,7 @@
 <template>
 	<div v-if="value" :class="['price', size ? `text-${size}` : '']">
 		<strong class="price__item price__item--actual">
-			<abbr :title="currency.code">{{ currency.symbol }}</abbr
+			<abbr :title="currency.value">{{ currency.symbol }}</abbr
 			>{{ value }}
 		</strong>
 
@@ -10,7 +10,7 @@
 			class="price__item price__item--old"
 			style="text-decoration: line-through"
 		>
-			<abbr :title="currency.code">{{ currency.symbol }}</abbr
+			<abbr :title="currency.value">{{ currency.symbol }}</abbr
 			>{{ old }}
 		</s>
 	</div>
