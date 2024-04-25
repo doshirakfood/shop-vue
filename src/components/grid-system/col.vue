@@ -33,7 +33,7 @@
 		@for $i from 1 through 12 {
 			$result: (calc(100% / 12) * $i);
 
-			&-#{num} {
+			&-#{$i} {
 				flex: 0 0 calc(#{$result} - 24px);
 			}
 		}

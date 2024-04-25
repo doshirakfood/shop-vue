@@ -13,6 +13,7 @@ import SvgIcon from '@components/SvgIcon.vue'
 import VButton from '@ui/button/button.vue'
 import VField from '@ui/field/field.vue'
 import VSelect from '@ui/select/select.vue'
+import VDropdown from '@ui/dropdown/dropdown.vue'
 import VRow from '@components/grid-system/row.vue'
 import VCol from '@components/grid-system/col.vue'
 
@@ -31,6 +32,7 @@ app.component('SvgIcon', SvgIcon)
 app.component('VButton', VButton)
 app.component('VField', VField)
 app.component('VSelect', VSelect)
+app.component('VDropdown', VDropdown)
 app.component('VRow', VRow)
 app.component('VCol', VCol)
 

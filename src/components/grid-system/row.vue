@@ -1,6 +1,11 @@
 <template>
 	<div
-		:class="['row', `row-${type}`, items ? `row-items-${items}` : '']"
+		:class="[
+			'row',
+			`row-${type}`,
+			items ? `row-items-${items}` : '',
+			justify ? `row-justify-${justify}` : '',
+		]"
 		:style="`--grid-columns: ${cols}; --grid-gap: ${gap}px;`"
 	>
 		<slot />
@@ -17,6 +22,11 @@
 			},
 
 			items: {
+				type: String,
+				default: null,
+			},
+
+			justify: {
 				type: String,
 				default: null,
 			},
@@ -51,6 +61,20 @@
 		&-items {
 			&-center {
 				align-items: center;
+			}
+		}
+
+		&-justify {
+			&-center {
+				justify-content: center;
+			}
+
+			&-between {
+				justify-content: space-between;
+			}
+
+			&-around {
+				justify-content: space-around;
 			}
 		}
 	}

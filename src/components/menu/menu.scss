@@ -1,0 +1,67 @@
+@mixin menu-link() {
+	padding: 16px 15px;
+
+	color: var(--color-gray-5);
+
+	font-weight: 500;
+	font-size: var(--text-size-small);
+	text-decoration: none;
+
+	fill: var(--color-gray-5);
+
+	&.router-link-exact-active {
+		color: var(--color-brand) !important;
+
+		fill: var(--color-brand) !important;
+	}
+}
+
+.menu {
+	$bp: &;
+
+	display: flex;
+	align-items: center;
+
+	&__col {
+		& + #{$bp}__col {
+			margin-left: 2px;
+		}
+	}
+
+	&-categories {
+		.dropdown {
+			&__header {
+				padding: 16px 24px;
+
+				color: var(--color-white);
+
+				background-color: var(--color-brand);
+
+				fill: var(--color-white);
+			}
+
+			&__label {
+				display: flex;
+				align-items: center;
+			}
+		}
+
+		&__burger {
+			width: 16px;
+			height: 16px;
+			margin: 0 10px 0 0;
+		}
+	}
+
+	&__dropdown {
+		.dropdown {
+			&__header {
+				@include menu-link;
+			}
+		}
+	}
+
+	&__link {
+		@include menu-link;
+	}
+}
