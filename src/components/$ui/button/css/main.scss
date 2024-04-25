@@ -33,9 +33,7 @@ button,
 
 .btn {
 	$bp: &;
-
-	@include outline-primary;
-
+	
 	&-wrapper,
 	&-label {
 		display: flex;
@@ -52,10 +50,6 @@ button,
 		height: 16px;
 
 		pointer-events: none;
-	}
-
-	&:focus-visible {
-		@include focus;
 	}
 
 	&:active {

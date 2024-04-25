@@ -8,6 +8,8 @@ body {
 	min-height: 100vh;
 	margin: 0;
 
+	color: var(--color-gray-9);
+
 	font-size: 16px;
 	font-family: $font-family;
 	line-height: 120%;
@@ -26,6 +28,13 @@ body {
 	max-width: 1360px;
 	margin-right: auto;
 	margin-left: auto;
+	padding: 0 15px;
+}
+
+a {
+	&[class] {
+		text-decoration: none;
+	}
 }
 
 input,

@@ -2,7 +2,7 @@
 	<router-link class="logotype" to="/" title="Go home page">
 		<span class="logotype__wrapper">
 			<svg-icon class="logotype__icon" name="logotype" />
-			<span v-if="isName" class="logotype__name">{{ companyName }}</span>
+			<span v-if="isName" class="logotype__name">{{ siteName }}</span>
 		</span>
 	</router-link>
 </template>
@@ -13,7 +13,7 @@
 	export default {
 		name: 'Logotype',
 		computed: {
-			...mapState('main', ['companyName']),
+			...mapState('main', ['siteName']),
 		},
 		props: {
 			isName: {
