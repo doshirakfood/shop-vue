@@ -6,15 +6,7 @@
 @import './import/common/root';
 @import './import/common/fonts';
 @import './import/common/global';
-@import './import/common/typography/heading';
-@import './import/common/typography/text';
 
 
 // components
 @import './import/components/notification';
-
-
-// atomic
-@import './import/common/atomic/color';
-@import './import/common/atomic/bg-color';
-@import './import/common/atomic/font-weight';
