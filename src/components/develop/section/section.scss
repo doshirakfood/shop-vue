@@ -2,6 +2,8 @@
 	margin-bottom: 50px;
 
 	&__title {
+		@include heading-h2(800);
+
 		margin-bottom: 30px;
 		padding: 10px 20px;
 
