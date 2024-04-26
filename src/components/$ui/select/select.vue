@@ -3,8 +3,8 @@
 		:class="[
 			'select',
 			`select--${type}`,
-			isSelectDisabled ? 'select-disabled' : '',
-			isMainShow ? 'select-open' : '',
+			isSelectDisabled ? 'select--disabled' : '',
+			isMainShow ? 'select--open' : '',
 		]"
 	>
 		<input
@@ -104,7 +104,7 @@
 						v-if="search && optionsList.length === 0"
 						class="select__note select__note--notfound"
 					>
-						{{ search.notfoundText }}
+						{{ search['notfoundText'] }}
 					</div>
 				</div>
 			</div>
@@ -250,9 +250,8 @@
 				const option = target.closest('.select__option') || false
 
 				if (option) {
-					const value = option.getAttribute('data-option-value')
-
-					this.selected.value = value
+					this.selected.value =
+						option.getAttribute('data-option-value')
 					this.selected.label = option.innerHTML
 
 					this.hide()
@@ -323,6 +322,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'select';
-</style>
+<style lang="scss" src="./select.scss" />

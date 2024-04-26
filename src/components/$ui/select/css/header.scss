@@ -29,31 +29,13 @@
 
 			content: '';
 
-			#{$bp}-open & {
+			#{$bp}--open & {
 				transform: rotate(180deg);
-			}
-
-			#{$bp}--default & {
-				right: 15px;
-			}
-
-			#{$bp}--small & {
-				right: 0;
 			}
 		}
 
 		&:hover {
 			border-color: inherit;
-		}
-
-		#{$bp}--default & {
-			@include field-appearance;
-
-			padding-right: 35px;
-		}
-
-		#{$bp}--small & {
-			padding-right: 13px;
 		}
 	}
 

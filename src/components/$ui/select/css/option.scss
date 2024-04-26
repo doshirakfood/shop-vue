@@ -8,15 +8,7 @@
 
 		user-select: none;
 
-		#{$bp}--default & {
-			padding: 14px;
-		}
-
-		#{$bp}--small & {
-			padding: 5px;
-		}
-
-		&:not(#{$bp}__option--selected) {
+		&:not(.select__option--selected) {
 			&:hover {
 				@include hover-hard;
 			}

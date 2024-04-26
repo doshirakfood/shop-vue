@@ -1,6 +1,3 @@
-$valid-pos: calc(100% - 30px);
-$pad-pos: 55px;
-
 .select {
 	$bp: &;
 
@@ -19,9 +16,43 @@ $pad-pos: 55px;
 		opacity: 0;
 	}
 
-	&-disabled {
+	&--disabled {
 		#{$bp}__header {
 			@include disabled;
+		}
+	}
+
+	&--default {
+		#{$bp} {
+			&__header {
+				@include field-appearance;
+
+				padding-right: 35px;
+
+				&::after {
+					right: 15px;
+				}
+			}
+
+			&__option {
+				padding: 14px;
+			}
+		}
+	}
+
+	&--small {
+		#{$bp} {
+			&__header {
+				padding-right: 13px;
+
+				&::after {
+					right: 0;
+				}
+			}
+
+			&__option {
+				padding: 5px
+			}
 		}
 	}
 }
