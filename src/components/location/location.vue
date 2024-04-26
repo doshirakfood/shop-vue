@@ -13,17 +13,13 @@
 
 <script>
 	import { mapState } from 'vuex'
-	import SvgIcon from '@components/SvgIcon.vue'
 
 	export default {
 		name: 'Location',
-		components: { SvgIcon },
 		computed: {
 			...mapState('main', ['location']),
 		},
 	}
 </script>
 
-<style lang="scss">
-	@import 'location';
-</style>
+<style lang="scss" src="./location.scss" />

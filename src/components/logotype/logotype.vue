@@ -24,6 +24,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'logotype';
-</style>
+<style lang="scss" src="./logotype.scss" />

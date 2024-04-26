@@ -86,6 +86,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'menu';
-</style>
+<style lang="scss" src="./menu.scss" />

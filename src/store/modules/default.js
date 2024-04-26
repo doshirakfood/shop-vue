@@ -41,7 +41,7 @@ const state = () => ({
 	],
 
 	shoppingCart: {
-		sum: 57.0,
+		sum: '57.00',
 		count: 2,
 	},
 })

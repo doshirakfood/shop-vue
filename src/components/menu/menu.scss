@@ -1,10 +1,10 @@
 @mixin menu-link() {
-	padding: 16px 15px;
+	@include text-small(500);
+
+	padding: 17.5px 0;
 
 	color: var(--color-gray-quinary);
 
-	font-weight: 500;
-	font-size: var(--text-size-small);
 	text-decoration: none;
 
 	fill: var(--color-gray-quinary);
@@ -24,14 +24,14 @@
 
 	&__col {
 		& + #{$bp}__col {
-			margin-left: 2px;
+			margin-left: 32px;
 		}
 	}
 
 	&-categories {
 		.dropdown {
 			&__header {
-				padding: 16px 24px;
+				padding: 17.5px 28px 17.5px 24.5px;
 
 				color: var(--color-white);
 
@@ -44,10 +44,14 @@
 				display: flex;
 				align-items: center;
 			}
+
+			&__arrow {
+				margin-left: 26px;
+			}
 		}
 
 		&__burger {
-			width: 16px;
+			width: 22px;
 			height: 16px;
 			margin: 0 10px 0 0;
 		}

@@ -1,8 +1,8 @@
 .top-panel {
-	padding: 14px 0;
 
+	@include text-tiny;
 
-	font-size: var(--text-size-tiny);
+	padding: 12px 0;
 
 	color: var(--color-gray-tertiary);
 

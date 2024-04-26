@@ -30,7 +30,7 @@
 	import Auth from '@components/auth/auth.vue'
 
 	export default {
-		name: 'top-panel',
+		name: 'LTopPanel',
 		components: {
 			Location,
 			ListLang,
@@ -40,6 +40,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'top-panel';
-</style>
+<style lang="scss" src="./top-panel.scss" />

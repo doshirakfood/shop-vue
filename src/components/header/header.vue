@@ -1,13 +1,9 @@
 <template>
 	<header class="header">
-		<div class="header-top">
-			<top-panel />
-		</div>
-
-		<div class="header-main">
+		<div class="header__main">
 			<div class="container">
 				<v-row justify="between" items="center">
-					<v-col cols="auto">
+					<v-col cols="3">
 						<logotype />
 					</v-col>
 
@@ -15,7 +11,7 @@
 						<v-search class="header__search" />
 					</v-col>
 
-					<v-col cols="auto">
+					<v-col cols="3">
 						<div class="header-actions">
 							<div class="header-actions__col">
 								<v-button
@@ -37,7 +33,7 @@
 			</div>
 		</div>
 
-		<div class="header-footer">
+		<div class="header__footer">
 			<div class="container">
 				<v-row justify="between" items="center">
 					<v-col cols="auto">
@@ -58,7 +54,6 @@
 
 <script>
 	import { mapState } from 'vuex'
-	import TopPanel from '@components/top-panel/top-panel.vue'
 	import Logotype from '@components/logotype/logotype.vue'
 	import VSearch from '@components/search/search.vue'
 	import ShoppingCart from '@components/shopping-cart/shopping-cart.vue'
@@ -69,10 +64,8 @@
 		computed: {
 			...mapState('contacts', ['phoneList']),
 		},
-		components: { MainMenu, TopPanel, Logotype, VSearch, ShoppingCart },
+		components: { MainMenu, Logotype, VSearch, ShoppingCart },
 	}
 </script>
 
-<style lang="scss">
-	@import 'header';
-</style>
+<style lang="scss" src="./header.scss" />
