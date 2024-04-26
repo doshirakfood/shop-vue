@@ -6,6 +6,30 @@
 
 	white-space: nowrap;
 
+	&--tiny {
+		@include text-tiny;
+	}
+
+	&--small {
+		@include text-small;
+	}
+
+	&--medium {
+		@include text-medium;
+	}
+
+	&--large {
+		@include text-large;
+	}
+
+	&--xl {
+		@include text-xl;
+	}
+
+	&--xxl {
+		@include text-xxl;
+	}
+
 	&__item {
 		font-weight: 500;
 		& + #{$bp}__item {

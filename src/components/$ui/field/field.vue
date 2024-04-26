@@ -39,6 +39,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'field';
-</style>
+<style lang="scss" src="./field.scss" />

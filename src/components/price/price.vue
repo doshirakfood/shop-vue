@@ -1,5 +1,5 @@
 <template>
-	<div v-if="value" :class="['price', size ? `text-${size}` : '']">
+	<div v-if="value" :class="['price', size ? `price--${size}` : '']">
 		<strong class="price__item price__item--actual">
 			<abbr :title="currency.value">{{ currency.symbol }}</abbr
 			>{{ value }}
@@ -44,6 +44,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'price';
-</style>
+<style lang="scss" src="./price.scss" />
