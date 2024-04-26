@@ -1,6 +1,6 @@
 // color
 .btn {
-	&-white {
+	&--white {
 		color: var(--color-gray-nonary);
 
 		background-color: var(--color-white);
@@ -8,7 +8,7 @@
 		fill: var(--color-gray-nonary);
 	}
 
-	&-brand {
+	&--brand {
 		color: var(--color-white);
 
 		background-color: var(--color-brand);
@@ -20,7 +20,7 @@
 		}
 	}
 
-	&-ghost {
+	&--ghost {
 		color: var(--color-brand);
 
 		background-color: var(--color-brand-ghost);
@@ -32,36 +32,7 @@
 
 			background-color: rgb(44 116 47 / 20%);
 
-			fill: var(--color-hard-primary);
-		}
-	}
-
-	&-danger {
-		color: #fff;
-
-		background: var(--color-danger);
-
-		fill: #fff;
-	}
-
-	@each $name in $gray-list {
-		$key: nth($name, 1);
-		$i: index($gray-list, $name);
-
-		&-gray-#{$key} {
-			background-color: var(--color-gray-#{$key});
-
-			@if $i < 6 {
-				color: var(--color-gray-9);
-
-				fill: var(--color-gray-9);
-			}
-
-			@if $i >= 6 {
-				color: var(--color-white);
-
-				fill: var(--color-white);
-			}
+			fill: var(--color-brand-hard);
 		}
 	}
 }
