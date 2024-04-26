@@ -1,0 +1,23 @@
+h1, h2, h3, h4, h5, h6, .heading {
+	margin: 0;
+
+	line-height: var(--heading-line-height);
+}
+
+.heading {
+	&--display {
+		@include heading-display;
+	}
+
+	@for $i from 1 through 5 {
+		&--#{$i} {
+			font-size: var(--heading-size-#{$i});
+		}
+	}
+}
+
+a {
+	&[class] {
+		text-decoration: none;
+	}
+}
