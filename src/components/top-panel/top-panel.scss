@@ -1,13 +1,14 @@
 .top-panel {
 	padding: 14px 0;
 
-	color: var(--color-gray-3);
 
 	font-size: var(--text-size-tiny);
 
-	background-color: var(--color-gray-8);
+	color: var(--color-gray-tertiary);
 
-	fill: var(--color-gray-3);
+	background-color: var(--color-gray-octonary);
+
+	fill: var(--color-gray-tertiary);
 
 	&-actions {
 		$ap: &;

@@ -1,36 +1,36 @@
 // color
 .btn {
 	&-white {
-		color: var(--color-gray-9);
+		color: var(--color-gray-nonary);
 
-		background: var(--color-white);
+		background-color: var(--color-white);
 
-		fill: var(--color-gray-9);
+		fill: var(--color-gray-nonary);
 	}
 
 	&-brand {
-		color: #fff;
+		color: var(--color-white);
 
-		background: var(--color-brand);
+		background-color: var(--color-brand);
 
-		fill: #fff;
+		fill: var(--color-white);
 
 		&:hover {
-			background: var(--color-hard-primary);
+			background: var(--color-brand-hard);
 		}
 	}
 
 	&-ghost {
 		color: var(--color-brand);
 
-		background: var(--color-brand-ghost);
+		background-color: var(--color-brand-ghost);
 
 		fill: var(--color-brand);
 
 		&:hover {
-			color: var(--color-hard-primary);
+			color: var(--color-brand-hard);
 
-			background: hsl(from var(--color-hard-primary) h s l / 20%);
+			background-color: rgb(44 116 47 / 20%);
 
 			fill: var(--color-hard-primary);
 		}

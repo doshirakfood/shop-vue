@@ -1,13 +1,13 @@
 @mixin menu-link() {
 	padding: 16px 15px;
 
-	color: var(--color-gray-5);
+	color: var(--color-gray-quinary);
 
 	font-weight: 500;
 	font-size: var(--text-size-small);
 	text-decoration: none;
 
-	fill: var(--color-gray-5);
+	fill: var(--color-gray-quinary);
 
 	&.router-link-exact-active {
 		color: var(--color-brand) !important;
