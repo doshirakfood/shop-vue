@@ -1,0 +1,79 @@
+/* Title */
+@mixin heading-display($weight: 600) {
+	font-weight: $weight;
+	font-size: var(--heading-size-display);
+}
+
+@mixin heading-h1($weight: 600) {
+	font-weight: $weight;
+	font-size: var(--heading-size-1);
+}
+
+@mixin heading-h2($weight: 600) {
+	font-weight: $weight;
+	font-size: var(--heading-size-2);
+}
+
+@mixin heading-h3($weight: 600) {
+	font-weight: $weight;
+	font-size: var(--heading-size-3);
+}
+
+@mixin heading-h4($weight: 600) {
+	font-weight: $weight;
+	font-size: var(--heading-size-4);
+}
+
+@mixin heading-h5($weight: 600) {
+	font-weight: $weight;
+	font-size: var(--heading-size-5);
+}
+
+
+/* Text */
+@mixin text-tiny($weight: 400) {
+	font-weight: $weight;
+	font-size: var(--text-size-tiny);
+	line-height: var(--text-line-height-tiny);
+}
+
+@mixin text-small($weight: 400) {
+	font-weight: $weight;
+	font-size: var(--text-size-small);
+}
+
+@mixin text-medium($weight: 400) {
+	font-weight: $weight;
+	font-size: var(--text-size-medium);
+}
+
+@mixin text-large($weight: 400) {
+	font-weight: $weight;
+	font-size: var(--text-size-large);
+}
+
+@mixin text-xl($weight: 400) {
+	font-weight: $weight;
+	font-size: var(--text-size-xl);
+}
+
+@mixin text-xxl($weight: 400) {
+	font-weight: $weight;
+	font-size: var(--text-size-xxl);
+}
+
+
+/* Others */
+@mixin text-ellipsis() {
+	overflow: hidden;
+
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+@mixin reset-list() {
+	margin: 0;
+	padding: 0;
+
+	list-style-type: none;
+}
