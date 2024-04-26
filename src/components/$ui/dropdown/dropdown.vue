@@ -3,8 +3,8 @@
 		:class="[
 			'dropdown',
 			`dropdown--${type}`,
-			isDropdownDisabled ? 'dropdown-disabled' : '',
-			isMainShow ? 'dropdown-open' : '',
+			isDropdownDisabled ? 'dropdown--disabled' : '',
+			isMainShow ? 'dropdown--open' : '',
 		]"
 	>
 		<router-link
@@ -65,7 +65,7 @@
 				:class="[
 					'dropdown__main',
 					`dropdown--${type}`,
-					isMainShow ? 'dropdown-open' : '',
+					isMainShow ? 'dropdown--open' : '',
 				]"
 				:style="floatingStyles"
 				@click="onSelected"
@@ -295,6 +295,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'dropdown';
-</style>
+<style lang="scss" src="./dropdown.scss" />

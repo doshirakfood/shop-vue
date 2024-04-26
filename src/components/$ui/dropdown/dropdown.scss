@@ -1,2 +1,55 @@
-@import './css/header';
-@import './css/main';
+.dropdown {
+	$bp: &;
+
+	&__header {
+		display: flex;
+		align-items: center;
+
+		cursor: pointer;
+
+		user-select: none;
+	}
+
+	&__arrow {
+		width: 10px;
+		min-width: 10px;
+		height: 10px;
+		margin-left: 10px;
+
+		transition: all $transition-primary;
+
+		#{$bp}--open & {
+			transform: rotate(180deg);
+		}
+	}
+
+	&__main {
+		@include dropdown-view(180px);
+
+		padding: 5px;
+
+		outline: none;
+	}
+
+	&__item {
+		& + #{$bp}__item {
+			margin-top: 5px
+		}
+	}
+
+	&__el {
+		display: block;
+
+		padding: 5px;
+		border-radius: $radius-primary;
+
+		color: inherit;
+		text-decoration: none;
+
+		transition: all $transition-primary;
+
+		&:hover {
+			@include hover-hard;
+		}
+	}
+}
