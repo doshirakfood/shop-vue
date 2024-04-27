@@ -1,8 +1,26 @@
 .header {
-	&__main {
+	&-main {
 		padding: 24px 0;
 
 		background-color: var(--bg-primary);
+
+		&__row {
+			@include grid-system;
+
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		&__col {
+			&--left,
+			&--right {
+				@include grid-col(span 3)
+			}
+
+			&--center {
+				@include grid-col(span 6);
+			}
+		}
 	}
 
 	&-actions {
@@ -46,10 +64,17 @@
 		margin: 0 auto;
 	}
 
-	&__footer {
+	&-footer {
 		display: flex;
 
 		background-color: var(--color-gray);
+
+		&__row {
+			@include grid-system(auto auto);
+
+			align-items: center;
+			justify-content: space-between;
+		}
 	}
 
 	&__phone {

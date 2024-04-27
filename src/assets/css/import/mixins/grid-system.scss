@@ -1,0 +1,15 @@
+@mixin grid-system(
+	$columns: repeat(var(--grid-columns), 1fr),
+	$gap: var(--grid-gap)
+) {
+	display: grid;
+	grid-auto-flow: row dense;
+	grid-template-rows: auto;
+	grid-template-columns: #{$columns};
+	gap: #{$gap};
+}
+
+@mixin grid-col($column: null, $row: null) {
+	grid-row: $row;
+	grid-column: $column;
+}

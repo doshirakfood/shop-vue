@@ -1,52 +1,48 @@
 <template>
 	<header class="header">
-		<div class="header__main">
-			<div class="container">
-				<v-row justify="between" items="center">
-					<v-col cols="3">
-						<logotype />
-					</v-col>
+		<div class="header-main">
+			<div class="header-main__row container">
+				<div class="header-main__col header-main__col--left">
+					<logotype />
+				</div>
 
-					<v-col cols="6">
-						<v-search class="header__search" />
-					</v-col>
+				<div class="header-main__col header-main__col--center">
+					<v-search class="header__search" />
+				</div>
 
-					<v-col cols="3">
-						<div class="header-actions">
-							<div class="header-actions__col">
-								<v-button
-									type="router"
-									to="favorites"
-									class="header-actions__item"
-									title="Favorites"
-									aria-label="Favorites"
-									:icon="{ name: 'icon-heart' }"
-								/>
-							</div>
-
-							<div class="header-actions__col">
-								<shopping-cart />
-							</div>
+				<div class="header-main__col header-main__col--right">
+					<div class="header-actions">
+						<div class="header-actions__col">
+							<v-button
+								type="router"
+								to="favorites"
+								class="header-actions__item"
+								title="Favorites"
+								aria-label="Favorites"
+								:icon="{ name: 'icon-heart' }"
+							/>
 						</div>
-					</v-col>
-				</v-row>
+
+						<div class="header-actions__col">
+							<shopping-cart />
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<div class="header__footer">
-			<div class="container">
-				<v-row justify="between" items="center">
-					<v-col cols="auto">
-						<main-menu />
-					</v-col>
+		<div class="header-footer">
+			<div class="header-footer__row container">
+				<div class="header-footer__col">
+					<main-menu />
+				</div>
 
-					<v-col cols="auto">
-						<a class="header__phone" :href="`tel:${phoneList[0]}`">
-							<svg-icon name="icon-phone" />
-							{{ phoneList[0] }}
-						</a>
-					</v-col>
-				</v-row>
+				<div class="header-footer__col">
+					<a class="header__phone" :href="`tel:${phoneList[0]}`">
+						<svg-icon name="icon-phone" />
+						{{ phoneList[0] }}
+					</a>
+				</div>
 			</div>
 		</div>
 	</header>

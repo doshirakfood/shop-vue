@@ -74,4 +74,9 @@
 	--text-line-height-primary: #{$line-height-primary};
 	--text-line-height-field: #{$line-height-field};
 	--text-line-height-tiny: #{$line-height-tiny};
+
+
+	/* OTHERS */
+	--grid-columns: #{$grid-columns};
+	--grid-gap: #{$grid-gap};
 }

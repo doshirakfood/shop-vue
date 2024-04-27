@@ -10,6 +10,12 @@
 
 	fill: var(--color-gray-tertiary);
 
+	&__row {
+		@include grid-system(auto auto);
+
+		justify-content: space-between;
+	}
+
 	&-actions {
 		$ap: &;
 

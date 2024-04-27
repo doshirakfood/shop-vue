@@ -14,8 +14,6 @@ import VButton from '@ui/button/button.vue'
 import VField from '@ui/field/field.vue'
 import VSelect from '@ui/select/select.vue'
 import VDropdown from '@ui/dropdown/dropdown.vue'
-import VRow from '@components/grid-system/row.vue'
-import VCol from '@components/grid-system/col.vue'
 
 // elements
 import Logotype from '@components/logotype/logotype.vue'
@@ -33,8 +31,6 @@ app.component('VButton', VButton)
 app.component('VField', VField)
 app.component('VSelect', VSelect)
 app.component('VDropdown', VDropdown)
-app.component('VRow', VRow)
-app.component('VCol', VCol)
 
 // elements
 app.component('Logotype', Logotype)
