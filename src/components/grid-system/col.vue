@@ -19,7 +19,9 @@
 <style lang="scss">
 	.col {
 		flex-grow: 1;
-		margin: 12px;
+		.row-flexbox > & {
+			margin: 12px;
+		}
 
 		&-auto {
 			flex-grow: unset;

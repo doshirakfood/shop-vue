@@ -44,6 +44,8 @@ const state = () => ({
 		sum: 57.0,
 		count: 2,
 	},
+
+	currentYear: new Date().getFullYear(),
 })
 
 const mutations = {
