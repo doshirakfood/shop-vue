@@ -14,7 +14,7 @@
 		&__col {
 			&--left,
 			&--right {
-				@include grid-col(span 3)
+				@include grid-col(span 3);
 			}
 
 			&--center {
@@ -78,7 +78,6 @@
 	}
 
 	&__phone {
-
 		@include text-small(500);
 
 		display: flex;

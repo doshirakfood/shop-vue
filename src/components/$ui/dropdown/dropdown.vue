@@ -1,118 +1,45 @@
 <template>
 	<div
+		ref="header"
 		:class="[
 			'dropdown',
 			`dropdown--${type}`,
-			isDropdownDisabled ? 'dropdown--disabled' : '',
-			isMainShow ? 'dropdown--open' : '',
+			{ 'dropdown--open': isShow },
+			{ 'dropdown--selected': isSelected },
+			{ 'dropdown--disabled': isDisabled },
 		]"
+		tabindex="0"
 	>
-		<router-link
-			v-if="$attrs.to"
-			ref="header"
-			tabindex="0"
-			class="dropdown__header"
-			:to="$attrs.to"
-			:id="`dropdown-${elId}-header`"
-			:aria-haspopup="true"
-			:aria-expanded="isMainShow"
-			@[showEvent]="onMainShow"
-			@keydown.space="onMainShow"
-		>
-			<div class="dropdown__label">
-				<span v-if="!$slots.header && label">{{ label }}</span>
-				<slot v-else name="header" />
-			</div>
+		<span v-if="!$slots.header && label">{{ label }}</span>
+		<slot v-else name="header" />
 
-			<svg-icon
-				v-if="arrow"
-				class="dropdown__arrow"
-				name="icon-arrow-small"
-			/>
-		</router-link>
-
-		<div
-			v-else
-			ref="header"
-			role="button"
-			tabindex="0"
-			class="dropdown__header"
-			:id="`dropdown-${elId}-header`"
-			:aria-haspopup="true"
-			:aria-expanded="isMainShow"
-			@[showEvent]="onMainShow"
-			@keydown.space="onMainShow"
-		>
-			<div class="dropdown__label">
-				<span v-if="!$slots.header && label">{{ label }}</span>
-				<slot v-else name="header" />
-			</div>
-
-			<svg-icon
-				v-if="arrow"
-				class="dropdown__arrow"
-				name="icon-arrow-small"
-			/>
-		</div>
-
-		<Teleport to="body">
-			<div
-				v-show="isMainShow"
-				ref="main"
-				tabindex="0"
-				:id="`dropdown-${elId}-main`"
-				:aria-labelledby="`dropdown-${elId}-trigger`"
-				:class="[
-					'dropdown__main',
-					`dropdown--${type}`,
-					isMainShow ? 'dropdown--open' : '',
-				]"
-				:style="floatingStyles"
-				@click="onSelected"
-				@[hideEvent]="onMainHide"
-			>
-				<div
-					v-if="!$slots.main && items.length > 0"
-					v-for="(item, index) in items"
-					:key="`dropdown-${elId}-item-${index}`"
-					:data-dropdown-value="JSON.stringify(item)"
-					class="dropdown__item"
-				>
-					<router-link
-						v-if="item.to"
-						:to="item.to"
-						class="dropdown__el"
-					>
-						{{ item.label }}
-					</router-link>
-
-					<span v-else class="dropdown__el">
-						{{ item.label }}
-					</span>
-				</div>
-
-				<slot v-else name="main" />
-			</div>
-		</Teleport>
+		<svg-icon
+			v-if="arrow"
+			class="dropdown__arrow"
+			name="icon-arrow-small"
+		/>
 	</div>
 </template>
 
 <script>
-	import { ref } from 'vue'
-	import { size, offset, flip, shift } from '@floating-ui/dom'
-	import { useFloating, autoUpdate } from '@floating-ui/vue'
+	import {
+		h,
+		ref,
+		getCurrentInstance,
+		onMounted,
+		defineComponent,
+		watch,
+	} from 'vue'
+	import { HelpersTippy } from '@helpers/tippy.js'
+	import DropdownList from './list.vue'
 
-	export default {
+	export default defineComponent({
 		name: 'VDropdown',
+
 		props: {
 			type: {
 				type: String,
 				default: 'default',
-			},
-
-			event: {
-				type: String,
-				default: 'click',
 			},
 
 			disabled: {
@@ -135,164 +62,119 @@
 				default: () => [],
 			},
 
-			position: {
-				type: String,
-				default: 'bottom',
+			params: {
+				type: Object,
+				default() {
+					return {
+						placement: 'bottom',
+						trigger: 'click',
+					}
+				},
 			},
 		},
 
-		setup(props) {
+		emits: ['select', 'show', 'hide'],
+
+		setup(props, context) {
+			const { uid } = getCurrentInstance()
+			const elId = uid
 			const header = ref(null)
-			const main = ref(null)
-			const { floatingStyles } = useFloating(header, main, {
-				whileElementsMounted: autoUpdate,
-				placement: props.position,
-				middleware: [
-					size({
-						apply({ rects, elements }) {
-							Object.assign(elements.floating.style, {
-								maxWidth: `${rects.reference.width}px`,
-							})
-						},
-					}),
-					offset(10),
-					flip(),
-					shift({
-						padding: 20,
-					}),
-				],
+
+			let isShow = ref(false)
+			let isSelected = ref(false)
+			let isDisabled = props.disabled
+
+			let tippy = ref({})
+			let instance = ref({})
+
+			const getOptions = () => {
+				let options = {
+					...props.params,
+					popperOptions: {
+						modifiers: [
+							{
+								name: 'sameWidth',
+								enabled: true,
+								phase: 'beforeWrite',
+								requires: ['computeStyles'],
+								fn: ({ state }) => {
+									state.styles.popper.width = `${state.rects.reference.width}px`
+								},
+								effect: ({ state }) => {
+									state.elements.popper.style.width = `${state.elements.reference.offsetWidth}px`
+								},
+							},
+						],
+					},
+					onShow,
+					onHide,
+				}
+
+				options.content = !context.slots.content
+					? defineComponent(() => {
+							return () =>
+								h(DropdownList, {
+									id: elId,
+									items: props.items,
+									onSelect: (selected) =>
+										onSelected(selected),
+								})
+						})
+					: defineComponent(() => {
+							return () => h('div', {}, context.slots.content())
+						})
+
+				return options
+			}
+
+			const onSelected = (selected) => {
+				instance.value.hide()
+
+				isSelected.value = true
+				context.emit('select', selected)
+			}
+
+			const onShow = () => {
+				isShow.value = true
+				context.emit('show', instance)
+			}
+
+			const onHide = () => {
+				isShow.value = false
+				context.emit('hide', instance)
+			}
+
+			onMounted(() => {
+				tippy.value = HelpersTippy(
+					header.value,
+					getOptions(props.items),
+					{
+						popper: 'dropdown__popper',
+						box: 'dropdown__box',
+					},
+				)
+
+				instance.value = header.value._tippy
 			})
 
-			return { header, main, floatingStyles }
-		},
-
-		data() {
-			return {
-				elId: this.$.uid,
-				showEvent: 'click',
-				hideEvent: 'click',
-				outsideEvent: 'click',
-				outsideTimer: null,
-				isMainShow: false,
-				isDropdownDisabled: this.disabled,
-				eventsList: {
-					click: {
-						show: 'click',
-						hide: 'click',
-					},
-
-					hover: {
-						show: 'mouseenter',
-						hide: 'mouseleave',
-					},
-
-					focus: {
-						show: 'focus',
-						hide: 'blur',
-					},
+			watch(
+				() => props,
+				() => {
+					tippy.value.setProps(getOptions())
 				},
+				{ deep: true },
+			)
+
+			return {
+				header,
+				tippy,
+				instance,
+				isShow,
+				isSelected,
+				isDisabled,
 			}
 		},
-
-		mounted() {
-			if (this.eventsList[this.event]) {
-				this.showEvent = this.eventsList[this.event].show
-				this.hideEvent = this.eventsList[this.event].hide
-
-				this.outsideEvent =
-					this.hideEvent === 'mouseleave'
-						? 'mouseout'
-						: this.hideEvent
-			}
-		},
-
-		methods: {
-			onMainShow() {
-				this.isMainShow = !this.isMainShow
-
-				if (this.isMainShow) {
-					this.show()
-					this.$emit('show', this)
-				} else {
-					this.hide()
-					this.$emit('hide', this)
-				}
-			},
-
-			onMainHide() {
-				this.hide()
-				this.$emit('hide', this)
-			},
-
-			onSelected(event) {
-				const target = event.target
-				const itemElem = target.closest('.dropdown__item')
-
-				if (itemElem) {
-					const dataValue = itemElem.getAttribute(
-						'data-dropdown-value',
-					)
-
-					this.$emit('selected', JSON.parse(dataValue))
-
-					this.hide()
-					this.$emit('hide', this)
-				}
-			},
-
-			onOutsideEvent(event) {
-				if (this.outsideTimer) {
-					clearTimeout(this.outsideTimer)
-				}
-
-				this.outsideTimer = setTimeout(() => {
-					const target = event.relatedTarget || event.target
-					const headerId = `#dropdown-${this.$data.elId}-header`
-					const dropdownId = `#dropdown-${this.$data.elId}-main`
-
-					if (
-						!target.closest(headerId) &&
-						!target.closest(dropdownId)
-					) {
-						this.hide()
-						this.$emit('hide', this)
-					}
-				}, 33)
-			},
-
-			show() {
-				this.isMainShow = true
-				this.$nextTick(() => {
-					if (this.event !== 'hover') {
-						this.$refs.main.focus()
-					}
-				})
-
-				document.body.addEventListener(
-					this.outsideEvent,
-					this.onOutsideEvent,
-					false,
-				)
-			},
-
-			hide() {
-				this.isMainShow = false
-				this.$nextTick(() => {
-					if (this.event !== 'hover') {
-						const header =
-							this.$refs.header.$el || this.$refs.header
-						header.focus()
-					}
-				})
-
-				document.body.removeEventListener(
-					this.outsideEvent,
-					this.onOutsideEvent,
-					false,
-				)
-			},
-		},
-	}
+	})
 </script>
 
-<style lang="scss" src="./dropdown.scss" />
+<style src="./dropdown.scss" lang="scss" />

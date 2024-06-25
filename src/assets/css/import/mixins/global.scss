@@ -24,6 +24,12 @@
 	fill: var(--color-brand);
 }
 
+@mixin active-link() {
+	color: var(--color-brand);
+
+	fill: var(--color-brand);
+}
+
 @mixin outline-primary() {
 	outline: 2px solid transparent;
 }

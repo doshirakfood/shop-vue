@@ -1,13 +1,18 @@
 .dropdown {
 	$bp: &;
 
-	&__header {
+	display: flex;
+	align-items: center;
+
+	cursor: pointer;
+
+	user-select: none;
+
+	&__label {
 		display: flex;
 		align-items: center;
 
-		cursor: pointer;
-
-		user-select: none;
+		pointer-events: none;
 	}
 
 	&__arrow {
@@ -18,12 +23,21 @@
 
 		transition: all $transition-primary;
 
+		pointer-events: none;
+
+		fill: inherit;
+
 		#{$bp}--open & {
 			transform: rotate(180deg);
 		}
 	}
 
-	&__main {
+	&__pooper {
+		min-width: fit-content;
+		padding: 10px 0;
+	}
+
+	&__box {
 		@include dropdown-view(180px);
 
 		padding: 5px;
@@ -32,12 +46,6 @@
 	}
 
 	&__item {
-		& + #{$bp}__item {
-			margin-top: 5px
-		}
-	}
-
-	&__el {
 		display: block;
 
 		padding: 5px;
@@ -46,10 +54,16 @@
 		color: inherit;
 		text-decoration: none;
 
+		cursor: pointer;
+
 		transition: all $transition-primary;
 
 		&:hover {
 			@include hover-hard;
+		}
+
+		& + #{$bp}__item {
+			margin-top: 5px;
 		}
 	}
 }

@@ -8,11 +8,10 @@
 }
 
 @mixin dropdown-view($min-width: 55px) {
-	z-index: 9999;
-
 	width: 100%;
 	min-width: $min-width;
 	max-height: 230px;
+
 	border-radius: $radius-primary;
 	overflow-y: auto;
 

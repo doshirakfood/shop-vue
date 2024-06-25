@@ -36,6 +36,8 @@ export function createRouter() {
 				},
 			},
 		],
+		linkActiveClass: 'router-active',
+		linkExactActiveClass: 'router-exact-active',
 	})
 
 	router.beforeEach((to) => {

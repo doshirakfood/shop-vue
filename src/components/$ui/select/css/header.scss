@@ -9,7 +9,9 @@
 
 		cursor: pointer;
 
-		transition: all $transition-primary, outline-color 0s;
+		transition:
+			all $transition-primary,
+			outline-color 0s;
 
 		&::after {
 			position: absolute;
