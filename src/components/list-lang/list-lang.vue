@@ -3,8 +3,9 @@
 		type="small"
 		:clear="false"
 		:search="false"
-		:value="lang.value"
-		:options="langList"
+		:items="langList"
+		:params="{ placement: 'bottom-end' }"
+		:model-value="lang.value"
 	/>
 </template>
 

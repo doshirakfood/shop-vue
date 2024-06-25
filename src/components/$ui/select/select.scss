@@ -1,5 +1,189 @@
-@import 'css/common';
-@import './css/header';
-@import 'css/main';
-@import './css/search';
-@import './css/option';
+.select {
+	$bp: &;
+
+	position: relative;
+
+	&__value {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+
+		z-index: -1;
+
+		width: 100%;
+		height: 100%;
+
+		opacity: 0;
+	}
+
+	&--disabled {
+		#{$bp}__output {
+			@include disabled;
+		}
+	}
+
+	&--default {
+		#{$bp} {
+			&__output {
+				@include field-appearance;
+
+				padding-right: 35px;
+
+				&::after {
+					right: 15px;
+				}
+			}
+
+			&__item {
+				padding: 14px;
+			}
+		}
+	}
+
+	&--small {
+		#{$bp} {
+			&__output {
+				padding-right: 13px;
+
+				&::after {
+					right: 0;
+				}
+			}
+
+			&__item {
+				padding: 5px;
+			}
+		}
+	}
+
+	&__output {
+		position: relative;
+
+		display: flex;
+		align-items: center;
+
+		cursor: pointer;
+
+		transition:
+			all $transition-primary,
+			outline-color 0s;
+
+		&::after {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+
+			display: block;
+			width: 9px;
+			height: 9px;
+			margin: auto 0;
+
+			background: url('@base64/icon-arrow-down.svg') no-repeat center;
+			background-size: contain;
+			transform-origin: center;
+
+			transition: all $transition-primary;
+
+			content: '';
+
+			#{$bp}--open & {
+				transform: rotate(180deg);
+			}
+		}
+
+		&:hover {
+			border-color: inherit;
+		}
+	}
+
+	&__placeholder {
+		color: var(--color-placeholder);
+
+		user-select: none;
+	}
+
+	&__clear {
+		width: 19px;
+		min-width: auto;
+		height: 19px;
+
+		background-color: var(--color-danger);
+
+		fill: var(--color-white);
+
+		.icon {
+			width: 9px;
+			min-width: 9px;
+			height: 9px;
+		}
+	}
+
+	&__popper {
+		min-width: min-content;
+	}
+
+	&__box {
+		@include dropdown-view;
+
+		position: relative;
+	}
+
+	&__search {
+		position: sticky;
+		top: 0;
+
+		&-field {
+			width: 100%;
+			padding: 14px 14px 14px 44px;
+			border: 0;
+			border-bottom: 1px solid var(--color-gray-primary);
+			border-radius: 0;
+
+			background-image: url('@svg/icon-search.svg');
+			background-repeat: no-repeat;
+			background-position: 14px center;
+			background-size: 16px 16px;
+			outline: none;
+
+			&:focus {
+				border-color: inherit;
+			}
+		}
+	}
+
+	&__item {
+		cursor: pointer;
+
+		transition: all $transition-primary;
+
+		user-select: none;
+
+		&:not(.select__item--selected) {
+			&:hover {
+				@include hover-hard;
+			}
+		}
+
+		&--selected {
+			border-color: var(--color-brand);
+
+			color: #fff;
+
+			background-color: var(--color-brand);
+
+			fill: #fff;
+		}
+
+		&--disabled {
+			@include disabled;
+		}
+
+		& + #{$bp}__item {
+			border-top: 1px solid var(--color-gray-primary);
+		}
+	}
+
+	&__note {
+		padding: 14px;
+	}
+}
