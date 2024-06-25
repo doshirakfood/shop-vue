@@ -29,13 +29,13 @@
 				@select="onSelect"
 			>
 				<template v-slot:header>
-					<router-link class="menu__link" :to="menu.to">
+					<router-link class="menu__link" :to="menu.path">
 						{{ menu.label }}
 					</router-link>
 				</template>
 			</v-dropdown>
 
-			<router-link v-else class="menu__link" :to="menu.to">
+			<router-link v-else class="menu__link" :to="menu.path">
 				{{ menu.label }}
 			</router-link>
 		</div>
@@ -55,37 +55,37 @@
 				elId: this.$.uid,
 				routerList: [
 					{
-						to: '/',
+						path: '/',
 						label: 'Home',
 						dropdown: true,
 					},
 
 					{
-						to: 'shop',
+						path: 'shop',
 						label: 'Shop',
 						dropdown: true,
 					},
 
 					{
-						to: 'pages',
+						path: 'pages',
 						label: 'Pages',
 						dropdown: true,
 					},
 
 					{
-						to: 'blog',
+						path: 'blog',
 						label: 'Blog',
 						dropdown: true,
 					},
 
 					{
-						to: 'about',
+						path: 'about',
 						label: 'About Us',
 						dropdown: false,
 					},
 
 					{
-						to: 'contact',
+						path: 'contact',
 						label: 'Contact Us',
 						dropdown: false,
 					},
