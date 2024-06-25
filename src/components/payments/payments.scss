@@ -1,9 +1,12 @@
 .payments {
+	&__row {
+		@include grid-system(repeat(5, 45px), 8px);
+	}
+
 	&__col {
-		width: 45px;
 		height: 31px;
 		padding: 0 6px;
-		border: 1px solid var(--color-green-8);
+		border: 1px solid var(--color-green-octonary);
 		border-radius: $radius-secondary;
 	}
 

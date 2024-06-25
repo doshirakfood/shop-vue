@@ -1,20 +1,19 @@
 <template>
 	<div class="instagram" v-once>
-		<v-row class="instagram__row" type="grid" :gap="`10px 12`" :cols="4">
-			<v-col
+		<div class="instagram__row">
+			<div
 				v-for="(photo, index) in photosList"
 				:key="`instagram-${index}`"
-				cols="3"
 				class="instagram__col"
 			>
 				<img
 					:src="`./instagram/${photo}`"
 					loading="lazy"
-					class="instagram__img"
 					alt="photo products"
+					class="instagram__img"
 				/>
-			</v-col>
-		</v-row>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -38,6 +37,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'instagram';
-</style>
+<style lang="scss" src="./instagram.scss" />

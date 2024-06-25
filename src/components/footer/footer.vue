@@ -1,9 +1,9 @@
 <template>
 	<footer class="footer">
-		<div class="footer-main">
-			<div class="container">
-				<v-row justify="between">
-					<v-col cols="3">
+		<div class="footer__wrapper container">
+			<div class="footer-main">
+				<div class="footer-main__row">
+					<div class="footer-main__col footer-main__col--left">
 						<h2 class="footer__title">About Shopery</h2>
 						<p>
 							Morbi cursus porttitor enim lobortis molestie. Duis
@@ -17,60 +17,62 @@
 							<span>or</span>
 							<a :href="`mailto: ${email}`">{{ email }}</a>
 						</p>
-					</v-col>
+					</div>
 
-					<v-col>
-						<v-row justify="around">
-							<v-col
-								v-for="(menu, index) in menuList"
-								:key="`${menu.title}-${index}`"
-								cols="auto"
-							>
-								<h2 class="footer__title">{{ menu.title }}</h2>
-								<nav
-									v-once
-									:aria-label="menu.title"
-									class="footer-nav"
+					<div class="footer-main__col footer-main__col--center">
+						<div class="footer-menu">
+							<div class="footer-menu__row">
+								<div
+									v-for="(menu, index) in menuList"
+									:key="`${menu.title}-${index}`"
+									class="footer-menu__col"
 								>
-									<router-link
-										v-for="(item, index) in menu.items"
-										:key="`${item.label}-${index}`"
-										:to="item.to"
-										class="footer-nav__item"
+									<h2 class="footer__title">
+										{{ menu.title }}
+									</h2>
+									<nav
+										v-once
+										:aria-label="menu.title"
+										class="footer-nav"
 									>
-										{{ item.label }}
-									</router-link>
-								</nav>
-							</v-col>
-						</v-row>
-					</v-col>
+										<router-link
+											v-for="(item, index) in menu.items"
+											:key="`${item.label}-${index}`"
+											:to="item.path"
+											class="footer-nav__item"
+										>
+											{{ item.label }}
+										</router-link>
+									</nav>
+								</div>
+							</div>
+						</div>
+					</div>
 
-					<v-col cols="3">
+					<div class="footer-main__col footer-main__col--right">
 						<h2 class="footer__title">Instagram</h2>
 						<instagram />
-					</v-col>
-				</v-row>
+					</div>
+				</div>
 			</div>
-		</div>
 
-		<div class="footer-bottom">
-			<div class="container">
-				<v-row justify="between" items="center">
-					<v-col cols="auto">
+			<div class="footer-bottom">
+				<div class="footer-bottom__row">
+					<div class="footer-bottom__col footer-bottom__col--left">
 						<social-network />
-					</v-col>
+					</div>
 
-					<v-col cols="auto">
+					<div class="footer-bottom__col footer-bottom__col--center">
 						<p>
 							Shopery eCommerce © {{ currentYear }}. All Rights
 							Reserved
 						</p>
-					</v-col>
+					</div>
 
-					<v-col cols="auto">
+					<div class="footer-bottom__col footer-bottom__col--right">
 						<payments />
-					</v-col>
-				</v-row>
+					</div>
+				</div>
 			</div>
 		</div>
 	</footer>
@@ -97,23 +99,23 @@
 						items: [
 							{
 								label: 'My Account',
-								to: 'profile',
+								path: 'profile',
 							},
 							{
 								label: 'Order History',
-								to: 'order-history',
+								path: 'order-history',
 							},
 							{
 								label: 'Shoping Cart',
-								to: 'cart',
+								path: 'cart',
 							},
 							{
 								label: 'Wishlist',
-								to: 'wishlist',
+								path: 'wishlist',
 							},
 							{
 								label: 'Settings',
-								to: 'settings',
+								path: 'settings',
 							},
 						],
 					},
@@ -123,19 +125,19 @@
 						items: [
 							{
 								label: 'Contact',
-								to: 'contact',
+								path: 'contact',
 							},
 							{
 								label: 'Faqs',
-								to: 'faq',
+								path: 'faq',
 							},
 							{
 								label: 'Terms & Condition',
-								to: 'terms-condition',
+								path: 'terms-condition',
 							},
 							{
 								label: 'Privacy Policy',
-								to: 'privacy-policy',
+								path: 'privacy-policy',
 							},
 						],
 					},
@@ -145,23 +147,23 @@
 						items: [
 							{
 								label: 'About',
-								to: 'about',
+								path: 'about',
 							},
 							{
 								label: 'Shop',
-								to: 'shop',
+								path: 'shop',
 							},
 							{
 								label: 'Product',
-								to: 'product',
+								path: 'product',
 							},
 							{
 								label: 'Products Details',
-								to: 'product-details',
+								path: 'product-details',
 							},
 							{
 								label: 'Track Order',
-								to: 'track-order',
+								path: 'track-order',
 							},
 						],
 					},
@@ -171,6 +173,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'footer';
-</style>
+<style lang="scss" src="./footer.scss" />
