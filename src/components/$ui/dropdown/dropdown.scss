@@ -32,11 +32,6 @@
 		}
 	}
 
-	&__pooper {
-		min-width: fit-content;
-		padding: 10px 0;
-	}
-
 	&__box {
 		@include dropdown-view(180px);
 
