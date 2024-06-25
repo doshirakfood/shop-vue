@@ -23,6 +23,12 @@ body {
 	flex-direction: column;
 }
 
+.wrapper {
+	display: flex;
+	flex: 1 0 auto;
+	flex-direction: column;
+}
+
 .container {
 	width: 100%;
 	max-width: 1350px;
