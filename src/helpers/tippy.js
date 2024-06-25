@@ -21,7 +21,7 @@ tippy.setDefaultProps({
 export function HelpersTippy(
 	el,
 	opts = {},
-	classNames = { popper: 'tippy-popper', box: 'tippy-box' },
+	classNames = { popper: ['tippy-popper'], box: 'tippy-box' },
 	settings = { mount: true },
 ) {
 	const vm = getCurrentInstance()
@@ -154,7 +154,10 @@ export function HelpersTippy(
 		let popper = document.createElement('div')
 		let box = document.createElement('div')
 
-		popper.classList.add(classNames.popper)
+		classNames.popper.forEach((classItem) =>
+			popper.classList.add(classItem),
+		)
+
 		popper.appendChild(box)
 
 		box.id = `tippy-${instance.id}-box`

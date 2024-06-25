@@ -65,10 +65,7 @@
 			params: {
 				type: Object,
 				default() {
-					return {
-						placement: 'bottom',
-						trigger: 'click',
-					}
+					return {}
 				},
 			},
 		},
@@ -88,24 +85,32 @@
 			let instance = ref({})
 
 			const getOptions = () => {
-				let options = {
-					...props.params,
-					popperOptions: {
-						modifiers: [
-							{
-								name: 'sameWidth',
-								enabled: true,
-								phase: 'beforeWrite',
-								requires: ['computeStyles'],
-								fn: ({ state }) => {
-									state.styles.popper.width = `${state.rects.reference.width}px`
+				let paramsPopper = Object.assign(
+					{
+						placement: 'bottom',
+						trigger: 'click',
+						popperOptions: {
+							modifiers: [
+								{
+									name: 'sameWidth',
+									enabled: true,
+									phase: 'beforeWrite',
+									requires: ['computeStyles'],
+									fn: ({ state }) => {
+										state.styles.popper.width = `${state.rects.reference.width}px`
+									},
+									effect: ({ state }) => {
+										state.elements.popper.style.width = `${state.elements.reference.offsetWidth}px`
+									},
 								},
-								effect: ({ state }) => {
-									state.elements.popper.style.width = `${state.elements.reference.offsetWidth}px`
-								},
-							},
-						],
+							],
+						},
 					},
+					props.params,
+				)
+
+				let options = {
+					...paramsPopper,
 					onShow,
 					onHide,
 				}
@@ -149,7 +154,7 @@
 					header.value,
 					getOptions(props.items),
 					{
-						popper: 'dropdown__popper',
+						popper: ['dropdown__popper', `dropdown--${props.type}`],
 						box: 'dropdown__box',
 					},
 				)
