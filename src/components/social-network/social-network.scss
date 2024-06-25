@@ -1,5 +1,9 @@
 .social-network {
-	&__link {
+	&__row {
+		@include grid-system(repeat(4, 40px), 8px);
+	}
+
+	&__col {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -9,7 +13,7 @@
 
 		transition: all $transition-primary;
 
-		fill: var(--color-gray-3);
+		fill: var(--color-gray-tertiary);
 
 		&:hover {
 			background-color: var(--color-brand);

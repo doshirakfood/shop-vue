@@ -12,6 +12,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'auth';
-</style>
+<style lang="scss" src="./auth.scss" />

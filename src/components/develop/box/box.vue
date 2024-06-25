@@ -19,6 +19,4 @@
 	}
 </script>
 
-<style scoped lang="scss">
-	@import 'box';
-</style>
+<style scoped lang="scss" src="./box.scss" />

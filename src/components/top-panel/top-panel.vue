@@ -1,24 +1,22 @@
 <template>
 	<div class="top-panel">
-		<div class="container">
-			<v-row justify="between">
-				<v-col cols="auto">
-					<location />
-				</v-col>
+		<div class="top-panel__row container">
+			<div class="top-panel__col">
+				<location />
+			</div>
 
-				<v-col cols="auto">
-					<div class="top-panel-actions">
-						<div class="top-panel-actions__col">
-							<list-lang class="top-panel-actions__item" />
-							<list-currency class="top-panel-actions__item" />
-						</div>
-
-						<div class="top-panel-actions__col">
-							<auth />
-						</div>
+			<div class="top-panel__col">
+				<div class="top-panel-actions">
+					<div class="top-panel-actions__col">
+						<list-lang class="top-panel-actions__item" />
+						<list-currency class="top-panel-actions__item" />
 					</div>
-				</v-col>
-			</v-row>
+
+					<div class="top-panel-actions__col">
+						<auth />
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -30,7 +28,7 @@
 	import Auth from '@components/auth/auth.vue'
 
 	export default {
-		name: 'top-panel',
+		name: 'LTopPanel',
 		components: {
 			Location,
 			ListLang,
@@ -40,6 +38,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'top-panel';
-</style>
+<style lang="scss" src="./top-panel.scss" />

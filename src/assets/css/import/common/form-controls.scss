@@ -1,0 +1,27 @@
+input,
+textarea {
+	font-size: var(--text-size-field);
+	font-family: var(--font-family-primary);
+	line-height: var(--text-size-field);
+
+	transition: border-color $transition-primary,;
+
+	&::placeholder {
+		color: var(--color-placeholder);
+	}
+
+	&:not([disabled]) {
+		&:hover {
+			border-color: inherit;
+		}
+	}
+}
+
+input,
+textarea,
+button,
+[role='button'] {
+	&[disabled] {
+		@include disabled;
+	}
+}

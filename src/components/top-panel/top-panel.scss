@@ -1,13 +1,19 @@
 .top-panel {
-	padding: 14px 0;
+	@include text-tiny;
 
-	color: var(--color-gray-3);
+	padding: 12px 0;
 
-	font-size: var(--text-size-tiny);
+	color: var(--color-gray-tertiary);
 
-	background-color: var(--color-gray-8);
+	background-color: var(--color-gray-octonary);
 
-	fill: var(--color-gray-3);
+	fill: var(--color-gray-tertiary);
+
+	&__row {
+		@include grid-system(auto auto);
+
+		justify-content: space-between;
+	}
 
 	&-actions {
 		$ap: &;

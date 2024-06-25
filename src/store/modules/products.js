@@ -2,27 +2,27 @@ const state = () => ({
 	productCategories: [
 		{
 			label: 'Vegetables',
-			to: '/',
+			path: '/',
 		},
 		{
 			label: 'Fresh Fruit',
-			to: '/',
+			path: '/',
 		},
 		{
 			label: 'Fish',
-			to: '/',
+			path: '/',
 		},
 		{
 			label: 'Meat',
-			to: '/',
+			path: '/',
 		},
 		{
 			label: 'Water and Drinks',
-			to: '/',
+			path: '/',
 		},
 		{
 			label: 'Snacks',
-			to: '/',
+			path: '/',
 		},
 	],
 })

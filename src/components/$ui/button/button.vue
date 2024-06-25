@@ -5,7 +5,7 @@
 		:type="type"
 		@click="$emit('click', $event.target)"
 	>
-		<span class="btn-wrapper">
+		<span class="btn__wrapper">
 			<svg-icon
 				v-if="icon['name']"
 				:class="classIconMain"
@@ -13,7 +13,7 @@
 				:name="icon['name']"
 			/>
 
-			<span v-if="label || $slots" class="btn-label">
+			<span v-if="label || $slots" class="btn__label">
 				{{ label }}
 				<slot />
 			</span>
@@ -25,7 +25,7 @@
 		:to="link"
 		:class="[classBtnMain, 'btn-link']"
 	>
-		<span class="btn-wrapper">
+		<span class="btn__wrapper">
 			<svg-icon
 				v-if="icon['name']"
 				:class="classIconMain"
@@ -33,7 +33,7 @@
 				:name="icon['name']"
 			/>
 
-			<span v-if="label || $slots" class="btn-label">
+			<span v-if="label || $slots" class="btn__label">
 				{{ label }}
 				<slot />
 			</span>
@@ -118,27 +118,25 @@
 			classBtnMain() {
 				const speciesClass =
 					typeof this.species === 'object'
-						? this.species.map((variable) => `btn-${variable}`)
-						: `btn-${this.species}`
+						? this.species.map((variable) => `btn--${variable}`)
+						: `btn--${this.species}`
 				const iconClass =
-					!this.label && this.icon.name ? 'btn-icon-only' : ''
-				const colorClass = this.color ? `btn-${this.color}` : ''
-				const sizeClass = this.size ? `btn-size-${this.size}` : ''
+					!this.label && this.icon.name ? 'btn--icon' : ''
+				const colorClass = this.color ? `btn--${this.color}` : ''
+				const sizeClass = this.size ? `btn--${this.size}` : ''
 
 				return ['btn', iconClass, colorClass, sizeClass, speciesClass]
 			},
 
 			classIconMain() {
 				const positionClass = this.icon.position
-					? `icon-${this.icon.position}`
+					? `btn__icon--${this.icon.position}`
 					: ''
 
-				return ['btn-icon', 'icon', positionClass]
+				return ['btn__icon', 'icon', positionClass]
 			},
 		},
 	}
 </script>
 
-<style lang="scss">
-	@import 'button';
-</style>
+<style lang="scss" src="./button.scss" />

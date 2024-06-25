@@ -1,7 +1,11 @@
 <template>
 	<nav class="menu">
 		<div class="menu__col">
-			<v-dropdown class="menu-categories" :items="productCategories">
+			<v-dropdown
+				class="menu-categories"
+				:items="productCategories"
+				@select="onSelect"
+			>
 				<template v-slot:header>
 					<svg-icon
 						class="menu-categories__burger"
@@ -13,20 +17,25 @@
 		</div>
 
 		<div
-			v-for="(menu, index) in menuList"
+			v-for="(menu, index) in routerList"
 			:key="`menu-${index}-${elId}`"
 			class="menu__col"
 		>
 			<v-dropdown
 				v-if="menu.dropdown"
-				class="menu__dropdown"
-				event="hover"
-				:to="menu.to"
-				:label="menu.label"
 				:items="productCategories"
-			/>
+				:params="{ trigger: 'mouseenter focus' }"
+				class="menu__dropdown"
+				@select="onSelect"
+			>
+				<template v-slot:header>
+					<router-link class="menu__link" :to="menu.path">
+						{{ menu.label }}
+					</router-link>
+				</template>
+			</v-dropdown>
 
-			<router-link v-else class="menu__link" :to="menu.to">
+			<router-link v-else class="menu__link" :to="menu.path">
 				{{ menu.label }}
 			</router-link>
 		</div>
@@ -44,48 +53,52 @@
 		data() {
 			return {
 				elId: this.$.uid,
-				menuList: [
+				routerList: [
 					{
-						to: '/',
+						path: '/',
 						label: 'Home',
 						dropdown: true,
 					},
 
 					{
-						to: 'shop',
+						path: 'shop',
 						label: 'Shop',
 						dropdown: true,
 					},
 
 					{
-						to: 'pages',
+						path: 'pages',
 						label: 'Pages',
 						dropdown: true,
 					},
 
 					{
-						to: 'blog',
+						path: 'blog',
 						label: 'Blog',
 						dropdown: true,
 					},
 
 					{
-						to: 'about',
+						path: 'about',
 						label: 'About Us',
 						dropdown: false,
 					},
 
 					{
-						to: 'contact',
+						path: 'contact',
 						label: 'Contact Us',
 						dropdown: false,
 					},
 				],
 			}
 		},
+
+		methods: {
+			onSelect(selected) {
+				this.$router.push(selected.path)
+			},
+		},
 	}
 </script>
 
-<style lang="scss">
-	@import 'menu';
-</style>
+<style lang="scss" src="./menu.scss" />

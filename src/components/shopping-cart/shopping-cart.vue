@@ -41,6 +41,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'shopping-cart';
-</style>
+<style lang="scss" src="./shopping-cart.scss" />

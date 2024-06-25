@@ -1,5 +1,5 @@
 <template>
-	<router-link class="logotype" to="/" title="Go home page">
+	<router-link class="logotype" to="/" title="Go home page" v-once>
 		<span class="logotype__wrapper">
 			<svg-icon class="logotype__icon" name="logotype" />
 			<span v-if="isName" class="logotype__name">{{ siteName }}</span>
@@ -24,6 +24,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'logotype';
-</style>
+<style lang="scss" src="./logotype.scss" />

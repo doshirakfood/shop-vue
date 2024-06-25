@@ -1,6 +1,11 @@
 .instagram {
+	&__row {
+		@include grid-system(repeat(4, 1fr), 12px);
+	}
+
 	&__col {
-		height: 69px;
+		aspect-ratio: 1/1;
+
 		border-radius: 4px;
 		overflow: hidden;
 	}

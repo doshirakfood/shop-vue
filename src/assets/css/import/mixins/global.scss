@@ -3,7 +3,7 @@
 }
 
 @mixin focus() {
-	outline-color: var(--outline-primary);
+	outline-color: var(--color-outline-primary);
 }
 
 @mixin focus-shadow() {
@@ -11,14 +11,20 @@
 }
 
 @mixin hover-hard() {
-	color: var(--color-hard-primary);
+	color: var(--color-brand-hard);
 
-	background: hsl(from var(--color-hard-primary) h s l / 20%);
+	background: hsl(from var(--color-brand-hard) h s l / 20%);
 
-	fill: var(--color-hard-primary);
+	fill: var(--color-brand-hard);
 }
 
 @mixin hover-link() {
+	color: var(--color-brand);
+
+	fill: var(--color-brand);
+}
+
+@mixin active-link() {
 	color: var(--color-brand);
 
 	fill: var(--color-brand);

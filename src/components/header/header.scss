@@ -3,6 +3,24 @@
 		padding: 24px 0;
 
 		background-color: var(--bg-primary);
+
+		&__row {
+			@include grid-system;
+
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		&__col {
+			&--left,
+			&--right {
+				@include grid-col(span 3);
+			}
+
+			&--center {
+				@include grid-col(span 6);
+			}
+		}
 	}
 
 	&-actions {
@@ -10,20 +28,32 @@
 
 		display: flex;
 		align-items: center;
+		justify-content: flex-end;
 
 		&__col {
 			& + #{$bp}__col {
-				margin-left: 16px;
-				padding-left: 20px;
-				border-left: 1px solid var(--color-gray-2);
+				display: inline-flex;
+				align-items: center;
+				margin-left: 12px;
+
+				&::before {
+					display: block;
+					width: 1px;
+					height: 24px;
+					margin-right: 17px;
+
+					background-color: var(--color-gray-secondary);
+
+					content: '';
+				}
 			}
 		}
 
 		&__item {
-			.btn-icon {
-				width: 26px;
-				min-width: 26px;
-				height: 26px;
+			svg {
+				width: 28px;
+				min-width: 28px;
+				height: 27px;
 			}
 		}
 	}
@@ -37,16 +67,23 @@
 	&-footer {
 		display: flex;
 
-		background-color: var(--color-gray-05);
+		background-color: var(--color-gray);
+
+		&__row {
+			@include grid-system(auto auto);
+
+			align-items: center;
+			justify-content: space-between;
+		}
 	}
 
 	&__phone {
+		@include text-small(500);
+
 		display: flex;
 		align-items: center;
 
 		color: inherit;
-		font-weight: 500;
-		font-size: var(--text-size-small);
 
 		svg {
 			width: 20px;

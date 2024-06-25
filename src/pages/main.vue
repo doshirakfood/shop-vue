@@ -1,7 +1,7 @@
 <template>
 	<layout-default class="home">
 		<div class="container">
-			<h1 class="title-display">Main page</h1>
+			<h1 class="heading heading--display">Main page</h1>
 		</div>
 	</layout-default>
 </template>

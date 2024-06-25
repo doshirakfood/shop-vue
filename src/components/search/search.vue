@@ -22,6 +22,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'search';
-</style>
+<style lang="scss" src="./search.scss" />

@@ -1,23 +1,17 @@
 <template>
 	<nav class="social-network" aria-label="Social network" v-once>
-		<v-row type="grid" :gap="8" :cols="4">
-			<v-col
+		<div class="social-network__row">
+			<a
 				v-for="(social, index) in socialList"
 				:key="`social-${index}`"
+				:href="social.link"
+				:title="`Subscribe to ${social.label}`"
+				:aria-label="`Subscribe to ${social.label}`"
+				class="social-network__col"
 			>
-				<a
-					:href="social.link"
-					:title="`Subscribe to ${social.label}`"
-					:aria-label="`Subscribe to ${social.label}`"
-					class="social-network__link"
-				>
-					<svg-icon
-						class="social-network__icon"
-						:name="social.icon"
-					/>
-				</a>
-			</v-col>
-		</v-row>
+				<svg-icon class="social-network__icon" :name="social.icon" />
+			</a>
+		</div>
 	</nav>
 </template>
 
@@ -32,6 +26,4 @@
 	}
 </script>
 
-<style lang="scss">
-	@import 'social-network';
-</style>
+<style lang="scss" src="./social-network.scss" />

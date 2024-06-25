@@ -3,8 +3,9 @@
 		type="small"
 		:clear="false"
 		:search="false"
-		:value="currency.value"
-		:options="currencyList"
+		:items="currencyList"
+		:params="{ placement: 'bottom-end' }"
+		:model-value="currency.value"
 	/>
 </template>
 

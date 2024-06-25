@@ -8,11 +8,11 @@ body {
 	min-height: 100vh;
 	margin: 0;
 
-	color: var(--color-gray-9);
+	color: var(--color-black);
 
-	font-size: 16px;
-	font-family: $font-family;
-	line-height: 120%;
+	font-size: var(--text-size-primary);
+	font-family: var(--font-family-primary);
+	line-height: var(--text-line-height-primary);
 
 	background-color: var(--bg-primary);
 }
@@ -29,50 +29,16 @@ body {
 	flex-direction: column;
 }
 
-.container {
-	width: 100%;
-	max-width: 1360px;
-	margin-right: auto;
-	margin-left: auto;
-	padding: 0 15px;
-}
-
 .main {
 	flex: 1 0 auto;
 }
 
-a {
-	&[class] {
-		text-decoration: none;
-	}
-}
-
-input,
-textarea {
-	font-size: inherit;
-	font-family: inherit;
-	line-height: 120%;
-
-	transition: border-color $transition-primary,;
-
-	&::placeholder {
-		color: var(--color-gray-4);
-	}
-
-	&:not([disabled]) {
-		&:hover {
-			border-color: inherit;
-		}
-	}
-}
-
-input,
-textarea,
-button,
-[role='button'] {
-	&[disabled] {
-		@include disabled;
-	}
+.container {
+	width: 100%;
+	max-width: 1350px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0 15px;
 }
 
 abbr {

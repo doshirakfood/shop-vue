@@ -1,5 +1,0 @@
-@each $name, $variable in $name-weight-list {
-	.font-#{$name} {
-		font-weight: #{$variable};
-	}
-}

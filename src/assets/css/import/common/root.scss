@@ -2,36 +2,81 @@
 	/* COLORS */
 	--color-brand: #{$brand};
 	--color-brand-ghost: #{$brand-ghost};
-	--color-soft-primary: #{$soft-primary};
-	--color-hard-primary: #{$hard-primary};
-	--color-warning: #{$warning};
-	--color-danger: #{$danger};
-	--color-white: #{$white};
-	--color-disabled: #{$disabled};
+	--color-brand-soft: #{$brand-soft};
+	--color-brand-hard: #{$brand-hard};
 
-	@each $name, $variable in $gray-list {
-		--color-gray-#{$name}: #{$variable};
-	}
+	// -- Common --
+	--color-success: #{$green-primary};
+	--color-warning: #{$yellow-primary};
+	--color-danger: #{$red-primary};
+	--color-black: #{$black-primary};
+	--color-white: #{$white-primary};
+	--color-disabled: #{$disabled-primary};
+	--color-placeholder: #{$placeholder-primary};
+	--color-outline-primary: #{$outline-primary};
 
-	@each $name, $variable in $green-list {
-		--color-green-#{$name}: #{$variable};
-	}
-
+	// -- Background color --
 	--bg-primary: #{$bg-primary};
-	--outline-primary: #{$outline-primary};
+	--bg-field: #{$bg-field};
+	--bg-dropdown: #{$bg-dropdown};
+
+	// -- Gray --
+	--color-gray: #{$gray}; 					  // 0.5
+	--color-gray-primary: #{$gray-primary};       // 1
+	--color-gray-secondary: #{$gray-secondary};   // 2
+	--color-gray-tertiary: #{$gray-tertiary}; 	  // 3
+	--color-gray-quaternary: #{$gray-quaternary}; // 4
+	--color-gray-quinary: #{$gray-quinary};       // 5
+	--color-gray-senary: #{$gray-senary};         // 6
+	--color-gray-septenary: #{$gray-septenary};   // 7
+	--color-gray-octonary: #{$gray-octonary};     // 8
+	--color-gray-nonary: #{$gray-nonary};         // 9
+
+	// -- Green --
+	--color-green: #{$green}; 					    // 0.5
+	--color-green-primary: #{$green-primary};       // 1
+	--color-green-secondary: #{$green-secondary};   // 2
+	--color-green-tertiary: #{$green-tertiary}; 	// 3
+	--color-green-quaternary: #{$green-quaternary}; // 4
+	--color-green-quinary: #{$green-quinary};       // 5
+	--color-green-senary: #{$green-senary};         // 6
+	--color-green-septenary: #{$green-septenary};   // 7
+	--color-green-octonary: #{$green-octonary};     // 8
+	--color-green-nonary: #{$green-nonary};         // 9
+
 
 
 	/* TYPOGRAPHY */
-	--heading-size-display: #{$heading-display};
-	--heading-size-1: #{$heading-01};
-	--heading-size-2: #{$heading-02};
-	--heading-size-3: #{$heading-03};
-	--heading-size-4: #{$heading-04};
-	--heading-size-5: #{$heading-05};
-	--text-size-tiny: #{$text-tiny};
-	--text-size-small: #{$text-small};
-	--text-size-medium: #{$text-medium};
-	--text-size-large: #{$text-large};
-	--text-size-xl: #{$text-xl};
-	--text-size-xxl: #{$text-xxl};
+	--font-family-primary: #{$font-family-primary};
+
+	// -- Title --
+	--heading-size-display: #{$heading-size-display};
+	--heading-size-1: #{$heading-size-01};
+	--heading-size-2: #{$heading-size-02};
+	--heading-size-3: #{$heading-size-03};
+	--heading-size-4: #{$heading-size-04};
+	--heading-size-5: #{$heading-size-05};
+	--heading-line-height: #{$heading-line-height};
+
+	// -- Text --
+	--text-size-primary: #{$text-size-primary};
+	--text-size-field: #{$text-size-field};
+
+	// sizes
+	--text-size-tiny: #{$text-size-tiny};
+	--text-size-small: #{$text-size-small};
+	--text-size-medium: #{$text-size-medium};
+	--text-size-large: #{$text-size-large};
+	--text-size-xl: #{$text-size-xl};
+	--text-size-xxl: #{$text-size-xxl};
+
+	// line-height
+	--text-line-height-primary: #{$line-height-primary};
+	--text-line-height-field: #{$line-height-field};
+	--text-line-height-tiny: #{$line-height-tiny};
+
+
+	/* OTHERS */
+	--grid-columns: #{$grid-columns};
+	--grid-gap: #{$grid-gap};
 }

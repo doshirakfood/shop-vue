@@ -3,8 +3,9 @@
 		:class="[
 			'select',
 			`select--${type}`,
-			isSelectDisabled ? 'select-disabled' : '',
-			isMainShow ? 'select-open' : '',
+			{ 'select--open': isShow },
+			{ 'select--selected': isSelected },
+			{ 'select--disabled': isDisabled },
 		]"
 	>
 		<input
@@ -14,120 +15,60 @@
 			:name="name"
 			:required="required"
 			:value="selected.value"
-			@reset="() => console.log('Hello world')"
 		/>
 
 		<div
-			:id="`select-${elId}-header`"
 			ref="header"
-			class="select__header"
+			class="select__output"
 			tabindex="0"
 			role="combobox"
 			aria-haspopup="listbox"
 			:aria-label="placeholder"
-			:aria-expanded="isMainShow"
-			:aria-controls="`select-${elId}-dropdown`"
-			@[event]="onMainShow"
-			@keydown.space="onMainShow"
+			:title="selected.label || selected.value || placeholder"
 		>
-			<div class="select__output">
-				{{ selected.label || selected.value }}
+			<!-- eslint-disable vue/no-v-html -->
+			<span v-html="selected.label || selected.value"></span>
+			<!--eslint-enable-->
 
-				<div v-if="!selected.value" class="select__placeholder">
-					{{ placeholder }}
-				</div>
+			<div v-show="!selected.value" class="select__placeholder">
+				{{ placeholder }}
 			</div>
-
-			<v-button
-				v-if="clear && selected.value"
-				class="select__clear"
-				aria-label="Select Clear"
-				title="Select Clear"
-				color="danger"
-				:icon="{
-					name: 'icon-close',
-				}"
-				@click="onClear"
-			/>
 		</div>
 
-		<Teleport to="body">
-			<div
-				v-show="isMainShow"
-				ref="main"
-				:class="['select__main', `select--${type}`]"
-				:style="floatingStyles"
-			>
-				<div class="select__overlay"></div>
-				<div
-					:id="`select-${elId}-dropdown`"
-					ref="dropdown"
-					tabindex="0"
-					class="select__dropdown"
-				>
-					<div v-if="search" class="select__search">
-						<input
-							v-model="optionSearch"
-							class="select__search-field"
-							type="search"
-							:placeholder="search['placeholder']"
-							@input="$emit('search', optionSearch)"
-						/>
-					</div>
-
-					<div
-						ref="listbox"
-						class="select__listbox"
-						@click="onSelected"
-					>
-						<div
-							v-for="(option, index) in optionsList"
-							:key="index"
-							role="option"
-							aria-selected="false"
-							:aria-label="option.value || option"
-							:data-option-value="option.value || option"
-							:title="option.value || option"
-							:class="[
-								'select__option',
-								option.value === selected.value ||
-								option === selected.value
-									? 'select__option--selected'
-									: '',
-							]"
-						>
-							{{ option.label || option.value || option }}
-						</div>
-					</div>
-
-					<div
-						v-if="search && optionsList.length === 0"
-						class="select__note select__note--notfound"
-					>
-						{{ search.notfoundText }}
-					</div>
-				</div>
-			</div>
-		</Teleport>
+		<v-button
+			v-if="clear && selected.value"
+			class="select__clear"
+			title="Clear select"
+			aria-label="Clear select"
+			color="danger"
+			:icon="{
+				name: 'icon-close',
+			}"
+			@click="onClear"
+		/>
 	</div>
 </template>
 
 <script>
-	import { ref } from 'vue'
-	import { size, offset, flip, shift } from '@floating-ui/dom'
-	import { useFloating, autoUpdate } from '@floating-ui/vue'
+	import {
+		h,
+		ref,
+		getCurrentInstance,
+		onMounted,
+		defineComponent,
+		watch,
+	} from 'vue'
+	import { HelpersTippy } from '@helpers/tippy.js'
+	import SelectList from './list.vue'
 
-	export default {
+	export default defineComponent({
 		name: 'VSelect',
+		components: [SelectList],
+
 		props: {
 			type: {
 				type: String,
 				default: 'default',
-			},
-
-			event: {
-				type: String,
-				default: 'click',
 			},
 
 			name: {
@@ -150,14 +91,9 @@
 				default: false,
 			},
 
-			value: {
+			modelValue: {
 				type: [String, Number],
 				default: null,
-			},
-
-			options: {
-				type: Array,
-				default: () => [],
 			},
 
 			clear: {
@@ -165,164 +101,189 @@
 				default: true,
 			},
 
+			items: {
+				type: Array,
+				default: () => [],
+			},
+
 			search: {
-				type: [Object, Boolean],
+				type: [Boolean, Object],
 				default: () => {
 					return {
 						placeholder: 'Search',
-						notfoundText: 'Nothing found',
+						notFound: 'Nothing found',
 					}
 				},
 			},
 
-			position: {
-				type: String,
-				default: 'bottom',
+			params: {
+				type: Object,
+				default() {
+					return {}
+				},
 			},
 		},
 
-		setup(props) {
+		emits: [
+			'update:modelValue',
+			'select',
+			'search',
+			'show',
+			'hide',
+			'clear',
+		],
+
+		setup(props, context) {
+			const { uid } = getCurrentInstance()
+			const elId = uid
 			const header = ref(null)
-			const main = ref(null)
-			const { floatingStyles } = useFloating(header, main, {
-				whileElementsMounted: autoUpdate,
-				placement: props.position,
-				middleware: [
-					size({
-						apply({ rects, elements }) {
-							Object.assign(elements.floating.style, {
-								maxWidth: `${rects.reference.width}px`,
-							})
-						},
-					}),
-					offset(10),
-					flip(),
-					shift({
-						padding: 20,
-					}),
-				],
+
+			let isShow = ref(false)
+			let isSelected = ref(false)
+			let isDisabled = props.disabled
+
+			let tippy = ref({})
+			let instance = ref({})
+			let selected = ref({
+				label: null,
+				value: props.modelValue,
 			})
 
-			return { header, main, floatingStyles }
-		},
+			let newItems = props.items.map((item, index) => {
+				let opts = Object.assign({}, item)
 
-		data() {
-			return {
-				elId: this.$.uid,
-				isMainShow: false,
-				isSelectDisabled: this.disabled,
-				selected: {
+				if (opts.selected || props.modelValue === opts.value) {
+					opts.selected = true
+				}
+
+				opts.index = index
+				opts.value = opts.value ? opts.value : item
+				opts.label = opts.label ? opts.label : opts.value
+
+				return opts
+			})
+
+			selected.value =
+				newItems.find((item) => item.selected) || selected.value
+
+			const getOptions = () => {
+				let paramsPopper = Object.assign(
+					{
+						placement: 'bottom',
+						trigger: 'click',
+						popperOptions: {
+							modifiers: [
+								{
+									name: 'sameWidth',
+									enabled: true,
+									phase: 'beforeWrite',
+									requires: ['computeStyles'],
+									fn: ({ state }) => {
+										state.styles.popper.width = `${state.rects.reference.width}px`
+									},
+									effect: ({ state }) => {
+										state.elements.popper.style.width = `${state.elements.reference.offsetWidth}px`
+									},
+								},
+							],
+						},
+					},
+					props.params,
+				)
+
+				let options = {
+					...paramsPopper,
+					onShow,
+					onHide,
+				}
+
+				options.content = defineComponent(() => {
+					return () =>
+						h(SelectList, {
+							id: elId,
+							items: newItems,
+							search: props.search,
+							selected: selected,
+							onSearch: (value) => onSearch(value),
+							onSelect: (selected) => onSelected(selected),
+						})
+				})
+
+				return options
+			}
+
+			const onSearch = (value) => {
+				context.emit('search', value)
+			}
+
+			const onSelected = (variable) => {
+				isSelected.value = true
+
+				selected.value = variable
+				instance.value.hide()
+
+				context.emit('select', selected.value)
+				context.emit('update:modelValue', selected.value['value'])
+			}
+
+			const onClear = () => {
+				isSelected.value = null
+
+				selected.value = {
 					label: null,
-					value: this.value,
+					value: null,
+				}
+
+				context.emit('clear', true)
+				context.emit('select', selected.value)
+				context.emit('update:modelValue', selected.value['value'])
+			}
+
+			const onShow = () => {
+				isShow.value = true
+
+				context.emit('show', instance.value)
+			}
+
+			const onHide = () => {
+				isShow.value = false
+
+				context.emit('hide', instance.value)
+			}
+
+			onMounted(() => {
+				tippy.value = HelpersTippy(
+					header.value,
+					getOptions(props.items),
+					{
+						popper: ['select__popper', `select--${props.type}`],
+						box: 'select__box',
+					},
+				)
+
+				instance.value = header.value._tippy
+			})
+
+			watch(
+				() => props,
+				() => {
+					tippy.value.setProps(getOptions())
 				},
-				optionSearch: '',
+				{ deep: true },
+			)
+
+			return {
+				header,
+				tippy,
+				instance,
+				selected,
+				isShow,
+				isSelected,
+				isDisabled,
+				onClear,
 			}
 		},
-
-		computed: {
-			optionsList() {
-				return this.options.filter((option) => {
-					const value = option.value || option
-
-					return value
-						.toLowerCase()
-						.includes(this.optionSearch.toLowerCase())
-				})
-			},
-		},
-
-		methods: {
-			onMainShow() {
-				this.optionSearch = ''
-				this.isMainShow = !this.isMainShow
-
-				if (this.isMainShow) {
-					this.show()
-					this.$emit('show', this)
-				} else {
-					this.hide()
-					this.$emit('hide', this)
-				}
-			},
-
-			onSelected(event) {
-				const target = event.target
-				const option = target.closest('.select__option') || false
-
-				if (option) {
-					const value = option.getAttribute('data-option-value')
-
-					this.selected.value = value
-					this.selected.label = option.innerHTML
-
-					this.hide()
-					this.$emit('selected', this.selected)
-				}
-			},
-
-			onClickOutside(event) {
-				const target = event.target
-				const headerId = this.$refs.header.getAttribute('id')
-				const dropdownId = this.$refs.dropdown.getAttribute('id')
-
-				if (
-					!target.closest(`#${headerId}`) &&
-					!target.closest(`#${dropdownId}`)
-				) {
-					this.hide()
-					this.$emit('hide', this)
-				}
-			},
-
-			onClear() {
-				this.reset()
-				this.$emit('clear', null)
-			},
-
-			show() {
-				this.isMainShow = true
-				this.$nextTick(() => this.$refs.dropdown.focus())
-
-				document.body.addEventListener(
-					'click',
-					this.onClickOutside,
-					false,
-				)
-			},
-
-			hide() {
-				this.optionSearch = ''
-				this.isMainShow = false
-
-				document.body.removeEventListener(
-					'click',
-					this.onClickOutside,
-					false,
-				)
-			},
-
-			choose(value) {
-				const optionChoose = this.options.find((option) => {
-					const optionValue = option.value || option
-
-					return optionValue
-						.toLowerCase()
-						.includes(value.toLowerCase())
-				})
-
-				this.hide()
-				this.selected.value = optionChoose.value || optionChoose
-				this.selected.label = optionChoose.label || optionChoose
-			},
-
-			reset() {
-				this.selected.value = null
-				this.selected.label = null
-			},
-		},
-	}
+	})
 </script>
 
-<style lang="scss">
-	@import 'select';
-</style>
+<style src="./select.scss" lang="scss" />
